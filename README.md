@@ -5,3 +5,5 @@ Quiz application made by students.
 Ambrus-Dobai Márton
 Szauer Bertalan
 Berta Gábor Pál
+Orbán András Kende
+
