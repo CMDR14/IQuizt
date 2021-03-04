@@ -1,5 +1,5 @@
 # IQuizt
-Quiz application made by students.
+Quiz application made by students, using Qt.
 
 # Developers:
 Ambrus-Dobai Márton
