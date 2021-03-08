@@ -1,10 +1,10 @@
-#include <QApplication>
-#include "view/mainwindow.h"
+#include <QtWidgets>
+#include "view/mainwidget.h"
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    IQuiztMainWindow w;
+    MainWidget w;
     w.show();
     return a.exec();
 }
