@@ -3,6 +3,7 @@
 
 #include <QGridLayout>
 #include <QLineEdit>
+#include <QPushButton>
 #include <QSpinBox>
 #include <QWidget>
 #include "../model/quizitem.h"
@@ -11,7 +12,7 @@ class QuizItemEditor : public QWidget
 {
     Q_OBJECT
 public:
-    explicit QuizItemEditor(QuizItem* quiz_item = nullptr, QWidget *parent = nullptr);
+    explicit QuizItemEditor(QuizItem* quiz_item, QWidget *parent = nullptr);
 
 private:
     QuizItem* quiz_item_;
@@ -24,8 +25,16 @@ private:
     QLineEdit* wrong3_line_;
     QSpinBox* trys_spin_;
     QSpinBox* corrects_spin_;
+    QPushButton* save_button_;
+    std::string new_str_[5];
+    int new_int[2];
 
-signals:
+    void init_layout();
+    void init_connects();
+
+public slots:
+    void on_textEdited(const QString &text);
+    void on_save();
 
 };
 

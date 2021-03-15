@@ -1,10 +1,17 @@
 #include "quizitemeditor.h"
+#include <QDebug>
 
 QuizItemEditor::QuizItemEditor(QuizItem *quiz_item, QWidget *parent)
     : QWidget(parent)
 {
     quiz_item_ = quiz_item;
 
+    init_layout();
+    init_connects();
+}
+
+void QuizItemEditor::init_layout()
+{
     grid_layout_ = new QGridLayout();
     grid_layout_->setSpacing(5);
 
@@ -42,5 +49,48 @@ QuizItemEditor::QuizItemEditor(QuizItem *quiz_item, QWidget *parent)
 
     grid_layout_->addLayout(trys_layout_, 3, 0);
 
+    save_button_ = new QPushButton("Save");
+    save_button_->setEnabled(false);
+    grid_layout_->addWidget(save_button_, 3, 1);
+
     setLayout(grid_layout_);
+}
+
+void QuizItemEditor::init_connects()
+{
+    connect(question_line_, SIGNAL(textEdited(const QString&)), this, SLOT(on_textEdited(const QString&)));
+    connect(right_line_, SIGNAL(textEdited(const QString&)), this, SLOT(on_textEdited(const QString&)));
+    connect(wrong1_line_, SIGNAL(textEdited(const QString&)), this, SLOT(on_textEdited(const QString&)));
+    connect(wrong2_line_, SIGNAL(textEdited(const QString&)), this, SLOT(on_textEdited(const QString&)));
+    connect(wrong3_line_, SIGNAL(textEdited(const QString&)), this, SLOT(on_textEdited(const QString&)));
+
+    connect(save_button_, SIGNAL(clicked()), this, SLOT(on_save()));
+}
+
+void QuizItemEditor::on_textEdited(const QString &text)
+{
+    //qDebug() << "Text edited\n";
+    save_button_->setEnabled(true);
+
+    if(sender() == question_line_)
+        new_str_[0] = text.toStdString();
+    if(sender() == right_line_)
+        new_str_[1] = text.toStdString();
+    if(sender() == wrong1_line_)
+        new_str_[2] = text.toStdString();
+    if(sender() == wrong2_line_)
+        new_str_[3] = text.toStdString();
+    if(sender() == wrong3_line_)
+        new_str_[4] = text.toStdString();
+
+    qDebug() << new_str_[0].c_str();
+
+}
+
+void QuizItemEditor::on_save()
+{
+    //qDebug() << "Saved\n";
+    save_button_->setEnabled(false);
+
+    
 }
