@@ -27,13 +27,14 @@ private:
     QSpinBox* corrects_spin_;
     QPushButton* save_button_;
     std::string new_str_[5];
-    int new_int[2];
+    int new_int_[2];
 
     void init_layout();
     void init_connects();
 
 public slots:
     void on_textEdited(const QString &text);
+    void on_valueChanged(int value);
     void on_save();
 
 };
