@@ -2,27 +2,27 @@
 
 std::string QuizItem::getQuestion() const
 {
-    return qiuz_item_[0];
+    return quiz_item_[0];
 }
 
 std::string QuizItem::getRightAnswer() const
 {
-    return qiuz_item_[1];
+    return quiz_item_[1];
 }
 
 std::string QuizItem::getWrongAnswer1() const
 {
-    return qiuz_item_[2];
+    return quiz_item_[2];
 }
 
 std::string QuizItem::getWrongAnswer2() const
 {
-    return qiuz_item_[3];
+    return quiz_item_[3];
 }
 
 std::string QuizItem::getWrongAnswer3() const
 {
-    return qiuz_item_[4];
+    return quiz_item_[4];
 }
 
 int QuizItem::getTrys() const
@@ -43,27 +43,27 @@ void QuizItem::newTry(bool correct)
 
 void QuizItem::setQuestion(std::string question)
 {
-    qiuz_item_[0] = question;
+    quiz_item_[0] = question;
 }
 
 void QuizItem::setRightAnswer(std::string right_answer)
 {
-    qiuz_item_[1] = right_answer;
+    quiz_item_[1] = right_answer;
 }
 
 void QuizItem::setWrongAnswer1(std::string wrong_answer_1)
 {
-    qiuz_item_[2] = wrong_answer_1;
+    quiz_item_[2] = wrong_answer_1;
 }
 
 void QuizItem::setWrongAnswer2(std::string wrong_answer_2)
 {
-    qiuz_item_[3] = wrong_answer_2;
+    quiz_item_[3] = wrong_answer_2;
 }
 
 void QuizItem::setWrongAnswer3(std::string wrong_answer_3)
 {
-    qiuz_item_[4] = wrong_answer_3;
+    quiz_item_[4] = wrong_answer_3;
 }
 
 void QuizItem::setTrys(int trys)
