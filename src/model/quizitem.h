@@ -7,8 +7,11 @@
 class QuizItem
 {
 public:
+    /*QuizItem(QuizItem* quiz_item)
+        : QuizItem(quiz_item->getQuestion(), quiz_item->getRightAnswer(), quiz_item->getWrongAnswer1(), quiz_item->getWrongAnswer2(), quiz_item->getWrongAnswer3(),
+                   quiz_item->getTrys(), quiz_item->getCorrects()) {}*/
     QuizItem(std::string question, std::string right_answer, std::string wrong_answer_1, std::string wrong_answer_2, std::string wrong_answer_3, int trys = 0, int correct = 0)
-        : qiuz_item_{ question, right_answer, wrong_answer_1, wrong_answer_2, wrong_answer_3 }, stat_{ trys, correct} {}
+        : quiz_item_{ question, right_answer, wrong_answer_1, wrong_answer_2, wrong_answer_3 }, stat_{ trys, correct} {}
     std::string getQuestion() const;
     std::string getRightAnswer() const;
     std::string getWrongAnswer1() const;
@@ -31,7 +34,7 @@ public:
     friend std::istream& operator>>(std::istream& is, QuizItem& q);
 
 private:
-    std::string qiuz_item_[5];
+    std::string quiz_item_[5];
     int stat_[2];
 
 };
