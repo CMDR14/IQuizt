@@ -6,10 +6,10 @@ project_dir="IQuizt"
 
 #delete, create and move to dir
 cd ..
-if [ -d "$dir" ] eq false; then
+#if [ -d "$dir" ] eq false; then
 #    rm -rf $dir
     mkdir $dir
-fi
+#fi
 cd $dir
 
 #build project
