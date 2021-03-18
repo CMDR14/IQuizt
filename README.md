@@ -10,3 +10,7 @@ Berta Gábor Pál
 
 Orbán András Kende
 
+
+# Build
+- Ubuntu: run ubuntu_build.sh
+  - Tested on Ubuntu 20.04.2 LTS
