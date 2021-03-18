@@ -24,25 +24,33 @@ find_package(Qt5Widgets REQUIRED)
 #find_package(Qt6 COMPONENTS Core)
 #find_package(Qt6 COMPONENTS Widgets)
 
-include_directories("${CMAKE_SOURCE_DIR}/src/model")
-include_directories("${CMAKE_SOURCE_DIR}/src/view")
-include_directories("${CMAKE_SOURCE_DIR}/src")
+set(SRC "${CMAKE_SOURCE_DIR}/src")
+set(SRC_MODEL "${CMAKE_SOURCE_DIR}/src/model")
+set(SRC_VIEW "${CMAKE_SOURCE_DIR}/src/view")
 
+include_directories(${SRC})
+include_directories(${SRC_MODEL})
+include_directories(${SRC_VIEW})
+
+file(GLOB MODEL_FILES ${SRC_MODEL}/*.cpp)
+file(GLOB VIEW_FILES ${SRC_VIEW}/*.cpp)
 
 if (WIN32)
     add_executable(IQuizt WIN32
-    src/view/mainwidget.cpp
-    src/main.cpp
+    ${SRC}/main.cpp
+    ${MODEL_FILES}
+    ${VIEW_FILES}
 )
 elseif(UNIX)
     add_executable(IQuizt
-    src/view/mainwidget.cpp
-    src/main.cpp
+    ${SRC}/main.cpp
+    ${MODEL_FILES}
+    ${VIEW_FILES}
 )
 endif()
 
-target_include_directories(IQuizt PRIVATE "${CMAKE_SOURCE_DIR}/src/model")
-target_include_directories(IQuizt PRIVATE "${CMAKE_SOURCE_DIR}/src/view")
-target_include_directories(IQuizt PRIVATE "${CMAKE_SOURCE_DIR}/src")
+target_include_directories(IQuizt PRIVATE ${SRC})
+target_include_directories(IQuizt PRIVATE ${SRC_MODEL})
+target_include_directories(IQuizt PRIVATE ${SRC_VIEW})
 
 target_link_libraries(IQuizt Qt5::Widgets)
