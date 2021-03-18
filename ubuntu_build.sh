@@ -12,12 +12,6 @@ if [ -d "$dir" ] eq false; then
 fi
 cd $dir
 
-#install packages
-sudo apt install -y cmake
-sudo apt install -y make
-sudo apt install -y gcc
-sudo apt install -y qt5-default
-
 #build project
 cmake ../$project_dir
 cmake --build . --
