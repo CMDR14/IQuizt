@@ -2,11 +2,30 @@
 
 #include <QFileInfo>
 #include <QFile>
+#include <QDir>
 #include <QTextStream>
 
+bool Persistence::get_quiz_sets(QVector<NameAndPath> &quiz_sets) {
+    quiz_sets = QVector<NameAndPath>();
+    QDir dir(path_);
+    for (auto entry : dir.entryList(QDir::Files)) {
+        NameAndPath current;
+        current.path = entry;
 
+        QFile file(entry);
+        if(!file.open(QFile::ReadOnly))
+                return false;
 
-bool Persistence::saveQuiz(const QVector<QString> &SaveQuizData)
+        QTextStream stream(&file);
+        current.name = stream.readLine();
+
+        file.close();
+        quiz_sets.append(current);
+    }
+    return true;
+}
+
+bool Persistence::saveQuiz(const QVector<QuizItem> &SaveQuizData)
 {
     QFile file("valaminev.sav"); //vagy .quiz, ha a savequizdataban tároljuk akkor annak mondjuk a 0. indexű eleme
     if(!file.open(QFile::WriteOnly))
@@ -24,17 +43,18 @@ bool Persistence::saveQuiz(const QVector<QString> &SaveQuizData)
     return true;
 }
 
-bool Persistence::loadQuiz(QVector<QString> &loadQuizData)
+bool Persistence::loadQuiz(QVector<QuizItem> &loadQuizData)
 {
     QFile file("valaminev.sav");
     if(!file.open(QFile::ReadOnly))
             return false;
 
     QTextStream stream(&file);
-
-    while(!stream.atEnd())
-    {
-        loadQuizData.append(stream.readLine());
+    loadQuizData = QVector<QuizItem>();
+    QuizItem tmp("", "", "", "", "");
+    while( !stream.atEnd() ) {
+        stream >> tmp;
+        loadQuizData.append(tmp);
     }
 
     file.close();
