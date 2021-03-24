@@ -76,7 +76,7 @@ void QuizItem::setCorrects(int corrects)
     stat_[1] = corrects;
 }
 
-std::ostream& operator<<(std::ostream& os, const QuizItem& q)
+QTextStream& operator<<(QTextStream& os, const QuizItem& q)
 {
     os << q.getQuestion() << "\n"
        << q.getRightAnswer() << "\n"
@@ -87,7 +87,7 @@ std::ostream& operator<<(std::ostream& os, const QuizItem& q)
     return os;
 }
 
-std::istream& operator>>(std::istream& is, QuizItem& q)
+QTextStream& operator>>(QTextStream& is, QuizItem& q)
 {
     std::string question, right, wrong1, wrong2, wrong3;
     int trys, corrects;

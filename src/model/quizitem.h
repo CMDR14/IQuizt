@@ -1,7 +1,7 @@
 #ifndef QUIZITEM_H
 #define QUIZITEM_H
 
-#include <iostream>
+#include <QTextStream>
 
 
 class QuizItem
@@ -30,8 +30,8 @@ public:
     void setTrys(int trys);
     void setCorrects(int corrects);
 
-    friend std::ostream& operator<<(std::ostream& os, const QuizItem& q);
-    friend std::istream& operator>>(std::istream& is, QuizItem& q);
+    friend QTextStream& operator<<(QTextStream& os, const QuizItem& q);
+    friend QTextStream& operator>>(QTextStream& is, QuizItem& q);
 
 private:
     std::string qiuz_item_[5];
