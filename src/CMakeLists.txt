@@ -1,9 +1,9 @@
 cmake_minimum_required(VERSION 3.16.0)
 
 if (WIN32)
-    project(IQuizt_SRC LANGUAGES CXX)
+    project(IQuizt LANGUAGES CXX)
 elseif(UNIX)
-    project(IQuizt)_SRC
+    project(IQuizt)
 endif()
 
 set(CMAKE_CONFIGURATION_TYPES "Release" CACHE STRING "" FORCE)
@@ -21,27 +21,21 @@ set(CMAKE_AUTOUIC ON)
 find_package(Qt5Core REQUIRED)
 find_package(Qt5Widgets REQUIRED)
 
-#find_package(Qt6 COMPONENTS Core)
-#find_package(Qt6 COMPONENTS Widgets)
 
-set(SRC "${CMAKE_SOURCE_DIR}/src")
-set(SRC_MODEL "${CMAKE_SOURCE_DIR}/src/model")
-set(SRC_VIEW "${CMAKE_SOURCE_DIR}/src/view")
+add_subdirectory(model)
+add_subdirectory(view)
+add_subdirectory(persistence)
 
 if (WIN32)
-    add_library(IQuizt WIN32
-    ${SRC}/main.cpp
-    ${MODEL_FILES}
-    ${VIEW_FILES}
+    add_library(IQuizt_SRC
+    main.cpp
 )
 elseif(UNIX)
-    add_library(IQuizt
-    ${SRC}/main.cpp
-    ${MODEL_FILES}
-    ${VIEW_FILES}
+    add_library(IQuizt_SRC
+    main.cpp
 )
 endif()
 
-target_include_directories(IQuizt PRIVATE ${CMAKE_SOURCE_DIR})
+#target_include_directories(IQuizt_SRC PRIVATE ${CMAKE_SOURCE_DIR})
 
-target_link_libraries(IQuizt Qt5::Widgets)
+target_link_libraries(IQuizt_SRC Qt5::Widgets)

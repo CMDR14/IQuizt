@@ -8,32 +8,25 @@ endif()
 
 set(CMAKE_CONFIGURATION_TYPES "Release" CACHE STRING "" FORCE)
 
-#set(CMAKE_CXX_STANDARD 17)
-#set(CMAKE_CXX_STANDARD_REQUIRED ON)
-
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 
-#set(CMAKE_PREFIX_PATH "C:/Qt/5.15.0/mingw81_64") #$ENV{QTDIR})
 find_package(Qt5Core REQUIRED)
 find_package(Qt5Widgets REQUIRED)
 
-
 if (WIN32)
-    add_library(IQuizt_Model
-    model.cpp
-    quizitem.cpp
+    add_library(IQuizt_Persistence
+    persistence.cpp
 )
 elseif(UNIX)
-    add_library(IQuizt_Model
-    model.cpp
-    quizitem.cpp
+    add_library(IQuizt_Persistence
+    persistence.cpp
 )
 endif()
 
-#target_include_directories(IQuizt_Model PRIVATE ${CMAKE_SOURCE_DIR})
+#target_include_directories(IQuizt_Persistence PRIVATE ${CMAKE_SOURCE_DIR})
 
-target_link_libraries(IQuizt_Model Qt5::Widgets)
+target_link_libraries(IQuizt_Persistence Qt5::Widgets)
