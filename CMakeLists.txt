@@ -40,6 +40,8 @@ if (WIN32)
     ${SRC}/main.cpp
     ${MODEL_FILES}
     ${VIEW_FILES}
+    src/persistence/persistence.h
+    src/persistence/persistence.cpp
 )
 elseif(UNIX)
     add_executable(IQuizt
