@@ -1,26 +1,26 @@
 #include "quizitem.h"
 
-std::string QuizItem::getQuestion() const
+QString QuizItem::getQuestion() const
 {
     return quiz_item_[0];
 }
 
-std::string QuizItem::getRightAnswer() const
+QString QuizItem::getRightAnswer() const
 {
     return quiz_item_[1];
 }
 
-std::string QuizItem::getWrongAnswer1() const
+QString QuizItem::getWrongAnswer1() const
 {
     return quiz_item_[2];
 }
 
-std::string QuizItem::getWrongAnswer2() const
+QString QuizItem::getWrongAnswer2() const
 {
     return quiz_item_[3];
 }
 
-std::string QuizItem::getWrongAnswer3() const
+QString QuizItem::getWrongAnswer3() const
 {
     return quiz_item_[4];
 }
@@ -41,27 +41,27 @@ void QuizItem::newTry(bool correct)
     stat_[1] = correct ? stat_[1] + 1 : stat_[1];
 }
 
-void QuizItem::setQuestion(std::string question)
+void QuizItem::setQuestion(QString question)
 {
     quiz_item_[0] = question;
 }
 
-void QuizItem::setRightAnswer(std::string right_answer)
+void QuizItem::setRightAnswer(QString right_answer)
 {
     quiz_item_[1] = right_answer;
 }
 
-void QuizItem::setWrongAnswer1(std::string wrong_answer_1)
+void QuizItem::setWrongAnswer1(QString wrong_answer_1)
 {
     quiz_item_[2] = wrong_answer_1;
 }
 
-void QuizItem::setWrongAnswer2(std::string wrong_answer_2)
+void QuizItem::setWrongAnswer2(QString wrong_answer_2)
 {
     quiz_item_[3] = wrong_answer_2;
 }
 
-void QuizItem::setWrongAnswer3(std::string wrong_answer_3)
+void QuizItem::setWrongAnswer3(QString wrong_answer_3)
 {
     quiz_item_[4] = wrong_answer_3;
 }
@@ -89,7 +89,7 @@ QTextStream& operator<<(QTextStream& os, const QuizItem& q)
 
 QTextStream& operator>>(QTextStream& is, QuizItem& q)
 {
-    std::string question, right, wrong1, wrong2, wrong3;
+    QString question, right, wrong1, wrong2, wrong3;
     int trys, corrects;
     is >> question
        >> right

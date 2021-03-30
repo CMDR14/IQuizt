@@ -25,7 +25,7 @@ void quizitemselector::init_layout()
     //grid_layout_->setSpacing(5);
 
     question_line_ = new QLineEdit(this);
-    question_line_->setText(QString::fromStdString(quiz_item_->getQuestion()));
+    question_line_->setText(quiz_item_->getQuestion());
     question_line_->setEnabled(false);
     grid_layout_->addWidget(question_line_, 0, 0, 1, 2);
 
@@ -34,19 +34,19 @@ void quizitemselector::init_layout()
     int right_button_y = QRandomGenerator::global()->bounded(0,2); //0-1
 
     right_button_ = new QPushButton(this);
-    right_button_->setText(QString::fromStdString(quiz_item_->getRightAnswer()));
+    right_button_->setText(quiz_item_->getRightAnswer());
     //grid_layout_->addWidget(right_button_, 1, 0);
 
     wrong1_button_ = new QPushButton(this);
-    wrong1_button_->setText(QString::fromStdString(quiz_item_->getWrongAnswer1()));
+    wrong1_button_->setText(quiz_item_->getWrongAnswer1());
     //grid_layout_->addWidget(wrong1_button_, 1, 1);
 
     wrong2_button_ = new QPushButton(this);
-    wrong2_button_->setText(QString::fromStdString(quiz_item_->getWrongAnswer2()));
+    wrong2_button_->setText(quiz_item_->getWrongAnswer2());
     //grid_layout_->addWidget(wrong2_button_, 2, 0);
 
     wrong3_button_ = new QPushButton(this);
-    wrong3_button_->setText(QString::fromStdString(quiz_item_->getWrongAnswer3()));
+    wrong3_button_->setText(quiz_item_->getWrongAnswer3());
     //grid_layout_->addWidget(wrong3_button_, 2, 1);
 
     init_answer_buttons(grid_layout_, right_button_x, right_button_y, right_button_, wrong1_button_, wrong2_button_, wrong3_button_);

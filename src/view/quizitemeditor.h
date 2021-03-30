@@ -26,7 +26,7 @@ private:
     QSpinBox* trys_spin_;
     QSpinBox* corrects_spin_;
     QPushButton* save_button_;
-    std::string new_str_[5];
+    QString new_str_[5];
     int new_int_[2];
 
     void init_layout();

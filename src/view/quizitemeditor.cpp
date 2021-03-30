@@ -17,23 +17,23 @@ void QuizItemEditor::init_layout()
 
 
     question_line_ = new QLineEdit(this);
-    question_line_->setText(QString::fromStdString(quiz_item_->getQuestion()));
+    question_line_->setText(quiz_item_->getQuestion());
     grid_layout_->addWidget(question_line_, 0, 0, 1, 2);
 
     right_line_ = new QLineEdit(this);
-    right_line_->setText(QString::fromStdString(quiz_item_->getRightAnswer()));
+    right_line_->setText(quiz_item_->getRightAnswer());
     grid_layout_->addWidget(right_line_, 1, 0);
 
     wrong1_line_ = new QLineEdit(this);
-    wrong1_line_->setText(QString::fromStdString(quiz_item_->getWrongAnswer1()));
+    wrong1_line_->setText(quiz_item_->getWrongAnswer1());
     grid_layout_->addWidget(wrong1_line_, 1, 1);
 
     wrong2_line_ = new QLineEdit(this);
-    wrong2_line_->setText(QString::fromStdString(quiz_item_->getWrongAnswer2()));
+    wrong2_line_->setText(quiz_item_->getWrongAnswer2());
     grid_layout_->addWidget(wrong2_line_, 2, 0);
 
     wrong3_line_ = new QLineEdit(this);
-    wrong3_line_->setText(QString::fromStdString(quiz_item_->getWrongAnswer3()));
+    wrong3_line_->setText(quiz_item_->getWrongAnswer3());
     grid_layout_->addWidget(wrong3_line_, 2, 1);
 
 
@@ -76,15 +76,15 @@ void QuizItemEditor::on_textEdited(const QString &text)
     save_button_->setEnabled(true);
 
     if(sender() == question_line_)
-        new_str_[0] = text.toStdString();
+        new_str_[0] = text;
     if(sender() == right_line_)
-        new_str_[1] = text.toStdString();
+        new_str_[1] = text;
     if(sender() == wrong1_line_)
-        new_str_[2] = text.toStdString();
+        new_str_[2] = text;
     if(sender() == wrong2_line_)
-        new_str_[3] = text.toStdString();
+        new_str_[3] = text;
     if(sender() == wrong3_line_)
-        new_str_[4] = text.toStdString();
+        new_str_[4] = text;
 
     //qDebug() << new_str_[0].c_str();
 
