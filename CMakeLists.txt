@@ -35,17 +35,24 @@ include_directories(${SRC_VIEW})
 file(GLOB MODEL_FILES ${SRC_MODEL}/*.cpp)
 file(GLOB VIEW_FILES ${SRC_VIEW}/*.cpp)
 
+file(GLOB MODEL_FILES_H ${SRC_MODEL_H}/*.h)
+file(GLOB VIEW_FILES_H ${SRC_VIEW_H}/*.h)
+
 if (WIN32)
     add_executable(IQuizt WIN32
     ${SRC}/main.cpp
     ${MODEL_FILES}
     ${VIEW_FILES}
+    ${MODEL_FILES_H}
+    ${VIEW_FILES_H}
 )
 elseif(UNIX)
     add_executable(IQuizt
     ${SRC}/main.cpp
     ${MODEL_FILES}
     ${VIEW_FILES}
+    ${MODEL_FILES_H}
+    ${VIEW_FILES_H}
 )
 endif()
 
