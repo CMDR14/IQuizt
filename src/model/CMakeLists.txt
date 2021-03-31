@@ -1,9 +1,9 @@
 cmake_minimum_required(VERSION 3.16.0)
 
 if (WIN32)
-    project(IQuizt LANGUAGES CXX)
+    project(IQuizt_Model LANGUAGES CXX)
 elseif(UNIX)
-    project(IQuizt)
+    project(IQuizt_Model)
 endif()
 
 set(CMAKE_CONFIGURATION_TYPES "Release" CACHE STRING "" FORCE)
@@ -36,4 +36,6 @@ endif()
 
 #target_include_directories(IQuizt_Model PRIVATE ${CMAKE_SOURCE_DIR})
 
-target_link_libraries(IQuizt_Model Qt5::Widgets)
+target_link_libraries(IQuizt_Model 
+    Qt5::Widgets
+    IQuizt_Persistence)

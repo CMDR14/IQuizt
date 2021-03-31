@@ -5,8 +5,8 @@
 #include <QDir>
 #include <QTextStream>
 
-bool Persistence::get_quiz_sets(QVector<NameAndPath> &quiz_sets) {
-    quiz_sets = QVector<NameAndPath>();
+bool Persistence::get_quiz_sets(QVector<NameAndPath>& quiz_sets) {
+    //quiz_sets = QVector<NameAndPath>();
     QDir dir(path_);
     for (auto entry : dir.entryList(QDir::Files)) {
         NameAndPath current;
@@ -35,7 +35,8 @@ bool Persistence::saveQuiz(const QVector<QuizItem> &SaveQuizData)
 
     for(int i = 0; i < SaveQuizData.size(); ++i)
     {
-        stream << SaveQuizData[i] << Qt::endl;
+        //stream << SaveQuizData[i] << Qt::endl;
+        stream << SaveQuizData[i] << "\n";
     }
 
     file.close();
@@ -72,7 +73,8 @@ bool Persistence::saveProfile(QVector<QString> &SaveProfileData)
 
     for(int i = 0; i < SaveProfileData.size(); ++i)
     {
-        stream << SaveProfileData[i] << Qt::endl;
+        //stream << SaveProfileData[i] << Qt::endl;
+        stream << SaveProfileData[i] << "\n";
     }
 
     file.close();

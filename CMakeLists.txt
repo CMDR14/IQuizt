@@ -1,10 +1,14 @@
 cmake_minimum_required(VERSION 3.16.0)
 
 if (WIN32)
-    project(IQuizt LANGUAGES CXX)
+    project(IQuizt_Main LANGUAGES CXX)
 elseif(UNIX)
-    project(IQuizt)
+    project(IQuizt_Main)
 endif()
+
+if ("${CMAKE_SOURCE_DIR}" STREQUAL "${CMAKE_BINARY_DIR}")
+  message(SEND_ERROR "In-source builds are not allowed.")
+endif ()
 
 set(CMAKE_CONFIGURATION_TYPES "Release" CACHE STRING "" FORCE)
 
@@ -37,13 +41,15 @@ find_package(Qt5Widgets REQUIRED)
 
 add_subdirectory(src)
 
-if (WIN32)
-    add_executable(IQuizt.exe WIN32
-)
-elseif(UNIX)
-    add_executable(IQuizt
-)
-endif()
+#if (WIN32)
+#    add_executable(IQuizt.exe WIN32
+#    src/main.cpp
+#)
+#elseif(UNIX)
+#    add_executable(IQuizt
+#    src/main.cpp
+#)
+#endif()
 
 #target_include_directories(IQuizt PRIVATE ${SRC})
 #target_include_directories(IQuizt PRIVATE ${SRC_MODEL})

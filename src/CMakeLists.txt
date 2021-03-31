@@ -27,15 +27,18 @@ add_subdirectory(view)
 add_subdirectory(persistence)
 
 if (WIN32)
-    add_library(IQuizt_SRC
+    add_executable(IQuizt WIN32
     main.cpp
 )
 elseif(UNIX)
-    add_library(IQuizt_SRC
+    add_executable(IQuizt
     main.cpp
 )
 endif()
 
-#target_include_directories(IQuizt_SRC PRIVATE ${CMAKE_SOURCE_DIR})
+target_include_directories(IQuizt PRIVATE ${CMAKE_SOURCE_DIR})
 
-target_link_libraries(IQuizt_SRC Qt5::Widgets)
+target_link_libraries(IQuizt
+    Qt5::Widgets
+    IQuizt_View
+)
