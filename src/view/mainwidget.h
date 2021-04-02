@@ -2,6 +2,7 @@
 #define MAINWIDGET_H
 
 #include "../model/model.h"
+#include <QListWidget>
 #include <QMenuBar>
 #include <QVBoxLayout>
 #include <QWidget>
@@ -18,13 +19,15 @@ public:
 private:
     Model* model_;
     void create_menubar();
+    Persistence* p_;
+    QVBoxLayout* VBoxLayout_;
+    QListWidget* list_;
 
 signals:
 
 public slots:
    void  on_my_profile();
    void  on_edit_quiz();
-   void  on_load_existing_project();
 
 };
 
