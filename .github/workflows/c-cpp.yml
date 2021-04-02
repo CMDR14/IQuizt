@@ -16,5 +16,13 @@ jobs:
       run: sudo apt-get install -yqq build-essential cmake
     - name: qt
       run: sudo apt-get install -yqq qt5-default
+    - name: chmod
+      run: chmod +x ubuntu_build.sh
     - name: ubuntu
-      run: bash ./ubuntu_build.sh
+      run: ./ubuntu_build.sh
+    
+    
+    
+    
+    
+    
