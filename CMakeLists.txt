@@ -45,6 +45,8 @@ if (WIN32)
     ${VIEW_FILES}
     ${MODEL_FILES_H}
     ${VIEW_FILES_H}
+    src/persistence/persistence.h
+    src/persistence/persistence.cpp
 )
 elseif(UNIX)
     add_executable(IQuizt
