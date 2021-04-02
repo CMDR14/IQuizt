@@ -20,6 +20,11 @@ jobs:
       run: chmod +x ubuntu_build.sh
     - name: ubuntu
       run: ./ubuntu_build.sh
+    - name: Send custom variable to Meercode Build
+      uses: meercodeio/meercode-custom-variable@0.1.0
+      with:
+        meercode-token: 'MmDV0sjlXKTtZOO2UoYAwA3B7VlUTYRQ'
+        url: 'https://github.com/CMDR14/IQuizt'
     
     
   test-persistence:
@@ -64,13 +69,13 @@ jobs:
         mkdir build_test
         cd build_test
     - name : Create MAKEFILE
-      run : cmake ../IQuizt
+      run : cmake ../IQuizt/tests
     - name : build QuizItemEditor test
       run : make QuizItemEditorTest
     - name : run test
       run : |
-        chmod +x tests/quizitemedtiortest/QuizItemEditorTest
-        ./tests/quizitemedtiortest/QuizItemEditorTest
+        chmod +x quizitemedtiortest/QuizItemEditorTest
+        ./quizitemedtiortest/QuizItemEditorTest
     
   test-quizitem:
     runs-on: ubuntu-latest
