@@ -38,14 +38,13 @@ jobs:
       run: sudo apt-get install -yqq build-essential cmake
     - name: qt
       run: sudo apt-get install -yqq qt5-default
-    - name: create build folder
+    - name: create build folder and build test
       run : |
         cd ..
         mkdir build_test
         cd build_test
         cmake ../IQuizt
-    - name : build persistence test
-      run : make PersistenceTest
+        make PersistenceTest
     - name : run test
       run : |
         chmod +x tests/PersistenceTest/PersistenceTest
