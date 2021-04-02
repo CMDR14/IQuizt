@@ -41,25 +41,15 @@ find_package(Qt5Widgets REQUIRED)
 
 add_subdirectory(src)
 
-if (WIN32)
-    add_executable(IQuizt WIN32
-    ${SRC}/main.cpp
-    ${MODEL_FILES}
-    ${VIEW_FILES}
-    ${MODEL_FILES_H}
-    ${VIEW_FILES_H}
-    src/persistence/persistence.h
-    src/persistence/persistence.cpp
-)
-elseif(UNIX)
-    add_executable(IQuizt
-    ${SRC}/main.cpp
-    ${MODEL_FILES}
-    ${VIEW_FILES}
-    ${MODEL_FILES_H}
-    ${VIEW_FILES_H}
-)
-endif()
+#if (WIN32)
+#    add_executable(IQuizt.exe WIN32
+#    src/main.cpp
+#)
+#elseif(UNIX)
+#    add_executable(IQuizt
+#    src/main.cpp
+#)
+#endif()
 
 #target_include_directories(IQuizt PRIVATE ${SRC})
 #target_include_directories(IQuizt PRIVATE ${SRC_MODEL})
