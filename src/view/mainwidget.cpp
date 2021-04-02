@@ -3,10 +3,9 @@
 #include <QDebug>
 
 
-MainWidget::MainWidget(QWidget *parent) : QWidget(parent)
+MainWidget::MainWidget(Model *model, QWidget *parent) : QWidget(parent)
 {
-    p_ = new Persistence();
-    model_ = new Model(p_);
+    model_ = model;
     VBoxLayout_ = new QVBoxLayout();
     create_menubar();
     list_ = new QListWidget();
@@ -22,13 +21,13 @@ void MainWidget::create_menubar()
         this->setLayout(VBoxLayout_);
 
         QMenuBar* menu_bar = new QMenuBar();
-        /*menu_bar->addAction("My Profile", this, SLOT(on_my_profile()));
+        menu_bar->addAction("My Profile", this, SLOT(on_my_profile()));
         menu_bar->addAction("Edit Quiz", this, SLOT(on_edit_quiz()));
-        menu_bar->addAction("Load Existing Quizzes", this, SLOT(on_load_existing_project()));
-        */
+        //menu_bar->addAction("Load Existing Quizzes", this, SLOT(on_load_existing_project()));
 
-        menu_bar->addAction("My Profile");
-        menu_bar->addAction("Edit Quiz");
+
+        //menu_bar->addAction("My Profile");
+        //menu_bar->addAction("Edit Quiz");
         auto *load_quiz_clicked = menu_bar->addAction("Load Existing Quizzes");
         connect(load_quiz_clicked, &QAction::triggered,this,[=]()
         {
@@ -50,6 +49,7 @@ void MainWidget::create_menubar()
         menu_bar->show();
         this->layout()->setMenuBar(menu_bar);
 
+        menu_bar->setFocus();
 }
 
 void MainWidget::on_my_profile()

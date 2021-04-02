@@ -1,7 +1,7 @@
 #include <QtTest>
 
 // add necessary includes here
-#include "../src/model/quizitem.h"
+#include "../../src/model/quizitem.h"
 
 class QuizItemTest : public QObject
 {
