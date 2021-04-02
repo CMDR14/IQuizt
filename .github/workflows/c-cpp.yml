@@ -13,11 +13,11 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: configure
-      run: ./configure
-    - name: make
-      run: make
-    - name: make check
-      run: make check
-    - name: make distcheck
-      run: make distcheck
+    - name: update
+      run: apt-get update -yqq
+    - name: essential
+      run: apt-get install -yqq build-essential cmake
+    - name: qt
+      run: apt-get install -yqq qt5-default
+    - name: ubuntu
+      run: ./ubuntu_build.sh
