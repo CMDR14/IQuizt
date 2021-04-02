@@ -2,10 +2,10 @@
 #define MAINWIDGET_H
 
 #include "../model/model.h"
+#include <QWidget>
 #include <QListWidget>
 #include <QMenuBar>
 #include <QVBoxLayout>
-#include <QWidget>
 #include "quizitemselector.h"
 #include "../model/quizitem.h"
 
@@ -13,7 +13,7 @@ class MainWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit MainWidget(QWidget *parent = nullptr);
+    explicit MainWidget(Model *model, QWidget *parent = nullptr);
 
 
 private:

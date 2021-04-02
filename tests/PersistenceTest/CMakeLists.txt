@@ -15,7 +15,7 @@ set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 enable_testing()
 
-add_executable(PersistenceTest tst_persistencetest.cpp ../../src/model/quizitem.cpp)
+add_executable(PersistenceTest tst_persistencetest.cpp ../../src/persistence/persistence.cpp ../../src/model/quizitem.cpp)
 add_test(NAME PersistenceTest COMMAND PersistenceTest)
 
 target_link_libraries(PersistenceTest PRIVATE Qt${QT_VERSION_MAJOR}::Gui Qt${QT_VERSION_MAJOR}::Test)
