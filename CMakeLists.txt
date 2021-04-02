@@ -39,6 +39,7 @@ find_package(Qt5Widgets REQUIRED)
 #file(GLOB MODEL_FILES ${SRC_MODEL}/*.cpp)
 #file(GLOB VIEW_FILES ${SRC_VIEW}/*.cpp)
 
+add_subdirectory(tests)
 add_subdirectory(src)
 
 #if (WIN32)

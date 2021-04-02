@@ -3,10 +3,9 @@
 #include <QDebug>
 
 
-MainWidget::MainWidget(QWidget *parent) : QWidget(parent)
+MainWidget::MainWidget(Model* model, QWidget *parent) : QWidget(parent)
 {
-    p_ = new Persistence();
-    model_ = new Model(p_);
+    model_ = model;
     VBoxLayout_ = new QVBoxLayout();
     create_menubar();
     list_ = new QListWidget();
