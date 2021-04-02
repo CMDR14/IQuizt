@@ -6,8 +6,10 @@
 
 class QuizItem
 {
+    friend class QuizItemEditorTest;
+
 public:
-    QuizItem(QString question, QString right_answer, QString wrong_answer_1, QString wrong_answer_2, QString wrong_answer_3, int trys = 0, int correct = 0)
+    QuizItem(QString question = "", QString right_answer = "", QString wrong_answer_1 = "", QString wrong_answer_2 = "", QString wrong_answer_3 = "", int trys = 0, int correct = 0)
         : quiz_item_{ question, right_answer, wrong_answer_1, wrong_answer_2, wrong_answer_3 }, stat_{ trys, correct} {}
     QString getQuestion() const;
     QString getRightAnswer() const;
