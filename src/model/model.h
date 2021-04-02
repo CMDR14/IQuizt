@@ -4,7 +4,7 @@
 #include "quizitem.h"
 #include <QDebug>
 #include <QVector>
-#include "persistence/persistence.h"
+#include "../persistence/persistence.h"
 
 
 

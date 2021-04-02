@@ -1,5 +1,5 @@
 #include "mainwidget.h"
-#include "persistence/persistence.h"
+#include "../persistence/persistence.h"
 #include <QDebug>
 
 
