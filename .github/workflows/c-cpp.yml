@@ -1,0 +1,28 @@
+name: C/C++ CI
+
+on: [ push , pull_request ]
+    
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: update
+      run: sudo apt-get update -yqq
+    - name: essential
+      run: sudo apt-get install -yqq build-essential cmake
+    - name: qt
+      run: sudo apt-get install -yqq qt5-default
+    - name: chmod
+      run: chmod +x ubuntu_build.sh
+    - name: ubuntu
+      run: ./ubuntu_build.sh
+    
+    
+    
+    
+    
+    
