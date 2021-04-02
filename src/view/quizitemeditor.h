@@ -11,6 +11,9 @@
 class QuizItemEditor : public QWidget
 {
     Q_OBJECT
+
+    friend class QuizItemEditorTest;
+
 public:
     explicit QuizItemEditor(QuizItem* quiz_item, QWidget *parent = nullptr);
 
