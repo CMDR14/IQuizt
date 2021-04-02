@@ -14,7 +14,11 @@ cd $dir
 
 #build project
 cmake ../$project_dir
-cmake --build . --
+#cmake --build . --
+make
+
+#run tests
+#./tests/QuizItemTest
 
 #run the app
 #./$project_dir
