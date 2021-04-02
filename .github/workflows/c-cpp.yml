@@ -11,10 +11,10 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: update
-      run: apt-get update -yqq
+      run: sudo apt-get update -yqq
     - name: essential
-      run: apt-get install -yqq build-essential cmake
+      run: sudo apt-get install -yqq build-essential cmake
     - name: qt
-      run: apt-get install -yqq qt5-default
+      run: sudo apt-get install -yqq qt5-default
     - name: ubuntu
       run: ./ubuntu_build.sh
