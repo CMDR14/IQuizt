@@ -1,10 +1,14 @@
 cmake_minimum_required(VERSION 3.16.0)
 
 if (WIN32)
-    project(IQuizt LANGUAGES CXX)
+    project(IQuizt_Main LANGUAGES CXX)
 elseif(UNIX)
-    project(IQuizt)
+    project(IQuizt_Main)
 endif()
+
+if ("${CMAKE_SOURCE_DIR}" STREQUAL "${CMAKE_BINARY_DIR}")
+  message(SEND_ERROR "In-source builds are not allowed.")
+endif ()
 
 set(CMAKE_CONFIGURATION_TYPES "Release" CACHE STRING "" FORCE)
 
@@ -24,19 +28,18 @@ find_package(Qt5Widgets REQUIRED)
 #find_package(Qt6 COMPONENTS Core)
 #find_package(Qt6 COMPONENTS Widgets)
 
-set(SRC "${CMAKE_SOURCE_DIR}/src")
-set(SRC_MODEL "${CMAKE_SOURCE_DIR}/src/model")
-set(SRC_VIEW "${CMAKE_SOURCE_DIR}/src/view")
+#set(SRC "${CMAKE_SOURCE_DIR}/src")
+#set(SRC_MODEL "${CMAKE_SOURCE_DIR}/src/model")
+#set(SRC_VIEW "${CMAKE_SOURCE_DIR}/src/view")
 
-include_directories(${SRC})
-include_directories(${SRC_MODEL})
-include_directories(${SRC_VIEW})
+#include_directories(${SRC})
+#include_directories(${SRC_MODEL})
+#include_directories(${SRC_VIEW})
 
-file(GLOB MODEL_FILES ${SRC_MODEL}/*.cpp)
-file(GLOB VIEW_FILES ${SRC_VIEW}/*.cpp)
+#file(GLOB MODEL_FILES ${SRC_MODEL}/*.cpp)
+#file(GLOB VIEW_FILES ${SRC_VIEW}/*.cpp)
 
-file(GLOB MODEL_FILES_H ${SRC_MODEL_H}/*.h)
-file(GLOB VIEW_FILES_H ${SRC_VIEW_H}/*.h)
+add_subdirectory(src)
 
 if (WIN32)
     add_executable(IQuizt WIN32
@@ -58,8 +61,8 @@ elseif(UNIX)
 )
 endif()
 
-target_include_directories(IQuizt PRIVATE ${SRC})
-target_include_directories(IQuizt PRIVATE ${SRC_MODEL})
-target_include_directories(IQuizt PRIVATE ${SRC_VIEW})
+#target_include_directories(IQuizt PRIVATE ${SRC})
+#target_include_directories(IQuizt PRIVATE ${SRC_MODEL})
+#target_include_directories(IQuizt PRIVATE ${SRC_VIEW})
 
-target_link_libraries(IQuizt Qt5::Widgets)
+#target_link_libraries(IQuizt Qt5::Widgets)

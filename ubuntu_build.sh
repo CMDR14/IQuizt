@@ -17,5 +17,5 @@ cmake ../$project_dir
 cmake --build . --
 
 #run the app
-./$project_dir
+#./$project_dir
 
