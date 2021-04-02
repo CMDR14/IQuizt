@@ -17,4 +17,4 @@ jobs:
     - name: qt
       run: sudo apt-get install -yqq qt5-default
     - name: ubuntu
-      run: ./ubuntu_build.sh
+      run: bash ./ubuntu_build.sh
