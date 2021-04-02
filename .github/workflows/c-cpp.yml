@@ -22,7 +22,79 @@ jobs:
       run: ./ubuntu_build.sh
     
     
+  test-persistence:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: update
+      run: sudo apt-get update -yqq
+    - name: essential
+      run: sudo apt-get install -yqq build-essential cmake
+    - name: qt
+      run: sudo apt-get install -yqq qt5-default
+    - name: create build folder
+      run : |
+        cd ..
+        mkdir build_test
+        cd build_test
+    - name : Create MAKEFILE
+      run : cmake ../IQuizt
+    - name : build persistence test
+      run : make PersistenceTest
+    - name : run test
+      run : |
+        chmod +x tests/PersistenceTest/PersistenceTest
+        ./tests/PersistenceTest/PersistenceTest
+        
+  test-quizitemeditor:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: update
+      run: sudo apt-get update -yqq
+    - name: essential
+      run: sudo apt-get install -yqq build-essential cmake
+    - name: qt
+      run: sudo apt-get install -yqq qt5-default
+    - name: create build folder
+      run : |
+        cd ..
+        mkdir build_test
+        cd build_test
+    - name : Create MAKEFILE
+      run : cmake ../IQuizt
+    - name : build QuizItemEditor test
+      run : make QuizItemEditorTest
+    - name : run test
+      run : |
+        chmod +x tests/quizitemedtiortest/QuizItemEditorTest
+        ./tests/quizitemedtiortest/QuizItemEditorTest
     
-    
-    
-    
+  test-quizitem:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: update
+      run: sudo apt-get update -yqq
+    - name: essential
+      run: sudo apt-get install -yqq build-essential cmake
+    - name: qt
+      run: sudo apt-get install -yqq qt5-default
+    - name: create build folder
+      run : |
+        cd ..
+        mkdir build_test
+        cd build_test
+    - name : Create MAKEFILE
+      run : cmake ../IQuizt
+    - name : build QuizItem test
+      run : make QuizItemTest
+    - name : run test
+      run : |
+        chmod +x tests/QuizItemTest/QuizItemTest
+        ./tests/QuizItemTest/QuizItemTest
+        
+        
