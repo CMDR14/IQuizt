@@ -18,9 +18,8 @@ cmake ../$project_dir
 make
 
 #run tests
-./tests/QuizItemTest
+#./tests/QuizItemTest
 
 #run the app
-./src/$project_dir
-
+#./$project_dir
 

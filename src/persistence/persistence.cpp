@@ -11,7 +11,7 @@ bool Persistence::get_quiz_sets(QVector<NameAndPath>& quiz_sets) {
     //path_ = "";
     //QDir dir(path_);
     QDir dir(QDir::currentPath());
-    qDebug() << QDir::currentPath();
+    //qDebug() << QDir::currentPath();
     for (auto &entry : dir.entryList(QDir::Files)) {
         if(entry.split('.').last()!="quiz")
             continue;
@@ -23,9 +23,9 @@ bool Persistence::get_quiz_sets(QVector<NameAndPath>& quiz_sets) {
         if(!file.open(QFile::ReadOnly))
                 return false;
 
-        qDebug() << "Eljut a stream(&file)ig";
+        //qDebug() << "Eljut a stream(&file)ig";
         QTextStream stream(&file);
-        qDebug() << entry;
+        //qDebug() << entry;
         current.name = stream.readLine();
 
         file.close();
