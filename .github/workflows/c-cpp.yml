@@ -41,7 +41,8 @@ jobs:
         cd build_test
         cmake ../IQuizt
         make PersistenceTest
-        ctest ./tests/PersistenceTest/PersistenceTest
+        cd ./tests/PersistenceTest/
+        ctest
         
   test-quizitemeditor:
     runs-on: ubuntu-latest
@@ -59,7 +60,8 @@ jobs:
         cd build_test
         cmake ../IQuizt
         make QuizItemEditorTest
-        ctest ./tests/quizitemedtiortest/QuizItemEditorTest
+        cd ./tests/quizitemedtiortest/
+        ctest
 #        Couldn't test because it needs a display. 
  
   test-quizitem:
@@ -78,6 +80,7 @@ jobs:
         cd build_test
         cmake ../IQuizt
         make QuizItemTest
-        ctest ./tests/QuizItemTest/QuizItemTest
+        cd ./tests/QuizItemTest/
+        ctest
         
         
