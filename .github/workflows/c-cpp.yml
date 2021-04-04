@@ -21,7 +21,7 @@ jobs:
     - name: Send custom variable to Meercode Build
       uses: meercodeio/meercode-custom-variable@0.1.0
       with:
-        meercode-token: 'MmDV0sjlXKTtZOO2UoYAwA3B7VlUTYRQ'
+        meercode-token: ${{secrets.MEERCODE_TOKEN}}
         url: 'https://github.com/CMDR14/IQuizt'
     
     
