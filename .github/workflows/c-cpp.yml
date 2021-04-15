@@ -10,12 +10,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: update
-      run: sudo apt-get update -yqq
-    - name: essential
-      run: sudo apt-get install -yqq build-essential cmake
-    - name: qt
-      run: sudo apt-get install -yqq qt5-default
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y build-essential cmake qt5-default
     - name: chmod
       run: chmod +x ubuntu_build.sh
     - name: ubuntu
@@ -23,7 +21,7 @@ jobs:
     - name: Send custom variable to Meercode Build
       uses: meercodeio/meercode-custom-variable@0.1.0
       with:
-        meercode-token: 'MmDV0sjlXKTtZOO2UoYAwA3B7VlUTYRQ'
+        meercode-token: ${{secrets.MEERCODE_TOKEN}}
         url: 'https://github.com/CMDR14/IQuizt'
     
     
@@ -32,12 +30,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: update
-      run: sudo apt-get update -yqq
-    - name: essential
-      run: sudo apt-get install -yqq build-essential cmake
-    - name: qt
-      run: sudo apt-get install -yqq qt5-default
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y build-essential cmake qt5-default
     - name: create build folder, build test and run it
       run : |
         cd ..
@@ -45,20 +41,18 @@ jobs:
         cd build_test
         cmake ../IQuizt
         make PersistenceTest
-        chmod +x tests/PersistenceTest/PersistenceTest
-        ./tests/PersistenceTest/PersistenceTest
+        cd ./tests/PersistenceTest/
+        ctest
         
   test-quizitemeditor:
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v2
-    - name: update
-      run: sudo apt-get update -yqq
-    - name: essential
-      run: sudo apt-get install -yqq build-essential cmake
-    - name: qt
-      run: sudo apt-get install -yqq qt5-default
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y build-essential cmake qt5-default
     - name: create build folder, build test and run it
       run : |
         cd ..
@@ -66,21 +60,19 @@ jobs:
         cd build_test
         cmake ../IQuizt
         make QuizItemEditorTest
-#        chmod +x tests/quizitemedtiortest/QuizItemEditorTest
-#        ./tests/quizitemedtiortest/QuizItemEditorTest
-#       Couldn't test because it needs a display. 
+#        cd ./tests/quizitemedtiortest/
+#        ctest
+#        Couldn't test because it needs a display. 
  
   test-quizitem:
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v2
-    - name: update
-      run: sudo apt-get update -yqq
-    - name: essential
-      run: sudo apt-get install -yqq build-essential cmake
-    - name: qt
-      run: sudo apt-get install -yqq qt5-default
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y build-essential cmake qt5-default
     - name: create build folder, build test and run it
       run : |
         cd ..
@@ -88,7 +80,7 @@ jobs:
         cd build_test
         cmake ../IQuizt
         make QuizItemTest
-        chmod +x tests/QuizItemTest/QuizItemTest
-        ./tests/QuizItemTest/QuizItemTest
+        cd ./tests/QuizItemTest/
+        ctest
         
         
