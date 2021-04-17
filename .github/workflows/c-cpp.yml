@@ -5,7 +5,7 @@ on: [ push , pull_request ]
 
 jobs:
   build:
-
+    needs: [test-persistence,test-quizitemeditor,test-quizitem]
     runs-on: ubuntu-latest
 
     steps:
@@ -82,5 +82,21 @@ jobs:
         make QuizItemTest
         cd ./tests/QuizItemTest/
         ctest
+
+  create-documentation:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+    - name: Install dependecies
+      run: |
+        sudo apt-get update
+        sudo apt-get install doxygen
+    - name: Generate with Doxygen
+      run: doxygen Doxyfile
+    - name: Upload artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: IQuizt Documentation
+        path: docs/*
         
         

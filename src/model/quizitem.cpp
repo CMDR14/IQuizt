@@ -35,6 +35,12 @@ int QuizItem::getCorrects() const
     return stat_[1];
 }
 
+
+/** \brief A new try with this item
+ * 
+ * User tried to answer this quiz question and the item can store this in it's own *statistic*.
+ * \param correct is the boolean to specify if the user answered the question correctly.
+ * */
 void QuizItem::newTry(bool correct)
 {
     stat_[0]++;
@@ -76,6 +82,20 @@ void QuizItem::setCorrects(int corrects)
     stat_[1] = corrects;
 }
 
+/** \brief Operator overload to write a QuizItem to a QTextStream
+ * 
+ * With this operator you can easily write a QuizItem to a QTextStream.
+ * Sysntax:
+ * ~~~~~~~~~~~~~~~
+ * QTestStream ts;
+ * QuizItem qi;
+ * ts << qi;
+ * ~~~~~~~~~~~~~~~
+ * \param os a short name for outstream. This is the reference of a QTextStream to write in.
+ * \param q a short QuizItem. This constant reference to a QuizItem which will be writen in the QTextStream
+ * \returns QTextSream which helps to use it like this: `c++ os << something << otherthing;`
+ * \see QTextStream
+ * */
 QTextStream& operator<<(QTextStream& os, const QuizItem& q)
 {
     os << q.getQuestion() << "\n"
