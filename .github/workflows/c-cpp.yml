@@ -87,19 +87,13 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@v2
     - name: Install dependecies
       run: |
         sudo apt-get update
         sudo apt-get install doxygen
-    - name: Where are we?
-      run: |
-        ls -al  
-        cd IQuizt
-        ls -al
     - name: Generate with Doxygen
-      run: |
-        cd IQuizt
-        doxygen Doxyfile
+      run: doxygen Doxyfile
     - name: Upload artifact
       uses: actions/upload-artifact@v2
       with:
