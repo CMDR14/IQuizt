@@ -92,9 +92,14 @@ jobs:
         sudo apt-get update
         sudo apt-get install doxygen
     - name: Where are we?
-      run: ls -al
+      run: |
+        ls -al  
+        cd IQuizt
+        ls -al
     - name: Generate with Doxygen
-      run: doxygen Doxyfile
+      run: |
+        cd IQuizt
+        doxygen Doxyfile
     - name: Upload artifact
       uses: actions/upload-artifact@v2
       with:
