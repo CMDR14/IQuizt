@@ -91,6 +91,8 @@ jobs:
       run: |
         sudo apt-get update
         sudo apt-get install doxygen
+    - name: Where are we?
+      run: ls -al
     - name: Generate with Doxygen
       run: doxygen Doxyfile
     - name: Upload artifact
