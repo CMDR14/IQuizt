@@ -1,0 +1,182 @@
+src/model/model.h:14:5: style: Class 'Model' has a constructor with 1 argument that is not explicit. [noExplicitConstructor]
+    Model(Persistence* p);
+    ^
+src/model/model.cpp:4:8: warning: Member variable 'Model::list_of_quizzes' is not initialized in the constructor. [uninitMemberVar]
+Model::Model(Persistence* p)
+       ^
+src/model/model.h:17:10: performance:inconclusive: Technically the member function 'Model::open_my_profile' can be static (but you may consider moving to unnamed namespace). [functionStatic]
+    void open_my_profile();
+         ^
+src/model/model.cpp:17:13: note: Technically the member function 'Model::open_my_profile' can be static (but you may consider moving to unnamed namespace).
+void Model::open_my_profile()
+            ^
+src/model/model.h:17:10: note: Technically the member function 'Model::open_my_profile' can be static (but you may consider moving to unnamed namespace).
+    void open_my_profile();
+         ^
+src/model/model.h:18:10: performance:inconclusive: Technically the member function 'Model::edit_active_quiz' can be static (but you may consider moving to unnamed namespace). [functionStatic]
+    void edit_active_quiz();
+         ^
+src/model/model.cpp:22:13: note: Technically the member function 'Model::edit_active_quiz' can be static (but you may consider moving to unnamed namespace).
+void Model::edit_active_quiz()
+            ^
+src/model/model.h:18:10: note: Technically the member function 'Model::edit_active_quiz' can be static (but you may consider moving to unnamed namespace).
+    void edit_active_quiz();
+         ^
+src/model/model.h:19:10: performance:inconclusive: Technically the member function 'Model::load_existing_quiz' can be static (but you may consider moving to unnamed namespace). [functionStatic]
+    void load_existing_quiz();
+         ^
+src/model/model.cpp:27:13: note: Technically the member function 'Model::load_existing_quiz' can be static (but you may consider moving to unnamed namespace).
+void Model::load_existing_quiz()
+            ^
+src/model/model.h:19:10: note: Technically the member function 'Model::load_existing_quiz' can be static (but you may consider moving to unnamed namespace).
+    void load_existing_quiz();
+         ^
+src/model/model.cpp:8:43: style: Variable 'list_of_quizzes' is assigned a value that is never used. [unreadVariable]
+    QVector<NameAndPath> *list_of_quizzes = new QVector<NameAndPath>();
+                                          ^
+src/persistence/persistence.h:18:10: performance:inconclusive: Technically the member function 'Persistence::get_quiz_sets' can be static (but you may consider moving to unnamed namespace). [functionStatic]
+    bool get_quiz_sets(QVector<NameAndPath>& quiz_sets);
+         ^
+src/persistence/persistence.cpp:9:19: note: Technically the member function 'Persistence::get_quiz_sets' can be static (but you may consider moving to unnamed namespace).
+bool Persistence::get_quiz_sets(QVector<NameAndPath>& quiz_sets) {
+                  ^
+src/persistence/persistence.h:18:10: note: Technically the member function 'Persistence::get_quiz_sets' can be static (but you may consider moving to unnamed namespace).
+    bool get_quiz_sets(QVector<NameAndPath>& quiz_sets);
+         ^
+src/persistence/persistence.h:20:10: performance:inconclusive: Technically the member function 'Persistence::saveQuiz' can be static (but you may consider moving to unnamed namespace). [functionStatic]
+    bool saveQuiz(const QVector<QuizItem> &SaveQuizData);
+         ^
+src/persistence/persistence.cpp:37:19: note: Technically the member function 'Persistence::saveQuiz' can be static (but you may consider moving to unnamed namespace).
+bool Persistence::saveQuiz(const QVector<QuizItem> &SaveQuizData)
+                  ^
+src/persistence/persistence.h:20:10: note: Technically the member function 'Persistence::saveQuiz' can be static (but you may consider moving to unnamed namespace).
+    bool saveQuiz(const QVector<QuizItem> &SaveQuizData);
+         ^
+src/persistence/persistence.h:23:10: performance:inconclusive: Technically the member function 'Persistence::saveProfile' can be static (but you may consider moving to unnamed namespace). [functionStatic]
+    bool saveProfile(QVector<QString> &SaveProfileData);
+         ^
+src/persistence/persistence.cpp:75:19: note: Technically the member function 'Persistence::saveProfile' can be static (but you may consider moving to unnamed namespace).
+bool Persistence::saveProfile(QVector<QString> &SaveProfileData)
+                  ^
+src/persistence/persistence.h:23:10: note: Technically the member function 'Persistence::saveProfile' can be static (but you may consider moving to unnamed namespace).
+    bool saveProfile(QVector<QString> &SaveProfileData);
+         ^
+src/persistence/persistence.h:24:10: performance:inconclusive: Technically the member function 'Persistence::loadProfile' can be static (but you may consider moving to unnamed namespace). [functionStatic]
+    bool loadProfile(QVector<QString> &LoadProfileData);
+         ^
+src/persistence/persistence.cpp:94:19: note: Technically the member function 'Persistence::loadProfile' can be static (but you may consider moving to unnamed namespace).
+bool Persistence::loadProfile(QVector<QString> &LoadProfileData)
+                  ^
+src/persistence/persistence.h:24:10: note: Technically the member function 'Persistence::loadProfile' can be static (but you may consider moving to unnamed namespace).
+    bool loadProfile(QVector<QString> &LoadProfileData);
+         ^
+tests/quizitemedtiortest/tst_quizitemeditortest.cpp:42:21: warning: Member variable 'QuizItemEditorTest::qie' is not initialized in the constructor. [uninitMemberVar]
+QuizItemEditorTest::QuizItemEditorTest()
+                    ^
+tests/quizitemedtiortest/tst_quizitemeditortest.cpp:42:21: warning: Member variable 'QuizItemEditorTest::qi' is not initialized in the constructor. [uninitMemberVar]
+QuizItemEditorTest::QuizItemEditorTest()
+                    ^
+tests/quizitemedtiortest/tst_quizitemeditortest.cpp:35:0: style: The function 'initTestCase' is never used. [unusedFunction]
+
+^
+src/persistence/persistence.cpp:94:0: style: The function 'loadProfile' is never used. [unusedFunction]
+
+^
+src/persistence/persistence.cpp:56:0: style: The function 'loadQuiz' is never used. [unusedFunction]
+
+^
+src/model/model.cpp:27:0: style: The function 'load_existing_quiz' is never used. [unusedFunction]
+
+^
+src/persistence/persistence.cpp:75:0: style: The function 'saveProfile' is never used. [unusedFunction]
+
+^
+src/persistence/persistence.cpp:37:0: style: The function 'saveQuiz' is never used. [unusedFunction]
+
+^
+tests/quizitemedtiortest/tst_quizitemeditortest.cpp:52:0: style: The function 'test_case_QuizItem' is never used. [unusedFunction]
+
+^
+tests/quizitemedtiortest/tst_quizitemeditortest.cpp:91:0: style: The function 'test_case_getCorrects' is never used. [unusedFunction]
+
+^
+tests/quizitemedtiortest/tst_quizitemeditortest.cpp:57:0: style: The function 'test_case_getQuestion' is never used. [unusedFunction]
+
+^
+tests/quizitemedtiortest/tst_quizitemeditortest.cpp:65:0: style: The function 'test_case_getRightAnswer' is never used. [unusedFunction]
+
+^
+tests/quizitemedtiortest/tst_quizitemeditortest.cpp:85:0: style: The function 'test_case_getTrys' is never used. [unusedFunction]
+
+^
+tests/quizitemedtiortest/tst_quizitemeditortest.cpp:70:0: style: The function 'test_case_getWrongAnswer1' is never used. [unusedFunction]
+
+^
+tests/quizitemedtiortest/tst_quizitemeditortest.cpp:75:0: style: The function 'test_case_getWrongAnswer2' is never used. [unusedFunction]
+
+^
+tests/quizitemedtiortest/tst_quizitemeditortest.cpp:80:0: style: The function 'test_case_getWrongAnswer3' is never used. [unusedFunction]
+
+^
+tests/QuizItemTest/tst_quizitemtest.cpp:78:0: style: The function 'test_getCorrects' is never used. [unusedFunction]
+
+^
+tests/QuizItemTest/tst_quizitemtest.cpp:48:0: style: The function 'test_getQuestion' is never used. [unusedFunction]
+
+^
+tests/QuizItemTest/tst_quizitemtest.cpp:53:0: style: The function 'test_getRightAnswer' is never used. [unusedFunction]
+
+^
+tests/QuizItemTest/tst_quizitemtest.cpp:73:0: style: The function 'test_getTrys' is never used. [unusedFunction]
+
+^
+tests/QuizItemTest/tst_quizitemtest.cpp:58:0: style: The function 'test_getWrongAnswer1' is never used. [unusedFunction]
+
+^
+tests/QuizItemTest/tst_quizitemtest.cpp:63:0: style: The function 'test_getWrongAnswer2' is never used. [unusedFunction]
+
+^
+tests/QuizItemTest/tst_quizitemtest.cpp:68:0: style: The function 'test_getWrongAnswer3' is never used. [unusedFunction]
+
+^
+tests/PersistenceTest/tst_persistencetest.cpp:43:0: style: The function 'test_get_quiz_sets_for_existing_file' is never used. [unusedFunction]
+
+^
+tests/PersistenceTest/tst_persistencetest.cpp:34:0: style: The function 'test_get_quiz_sets_for_null_file' is never used. [unusedFunction]
+
+^
+tests/quizitemedtiortest/tst_quizitemeditortest.cpp:130:0: style: The function 'test_gui_lineEdit' is never used. [unusedFunction]
+
+^
+tests/quizitemedtiortest/tst_quizitemeditortest.cpp:120:0: style: The function 'test_layout_GridLayout' is never used. [unusedFunction]
+
+^
+tests/QuizItemTest/tst_quizitemtest.cpp:83:0: style: The function 'test_newTry' is never used. [unusedFunction]
+
+^
+tests/QuizItemTest/tst_quizitemtest.cpp:132:0: style: The function 'test_setCorrects' is never used. [unusedFunction]
+
+^
+tests/QuizItemTest/tst_quizitemtest.cpp:96:0: style: The function 'test_setQuestion' is never used. [unusedFunction]
+
+^
+tests/QuizItemTest/tst_quizitemtest.cpp:102:0: style: The function 'test_setRightAnswer' is never used. [unusedFunction]
+
+^
+tests/QuizItemTest/tst_quizitemtest.cpp:126:0: style: The function 'test_setTrys' is never used. [unusedFunction]
+
+^
+tests/QuizItemTest/tst_quizitemtest.cpp:108:0: style: The function 'test_setWrongAnswer1' is never used. [unusedFunction]
+
+^
+tests/QuizItemTest/tst_quizitemtest.cpp:114:0: style: The function 'test_setWrongAnswer2' is never used. [unusedFunction]
+
+^
+tests/QuizItemTest/tst_quizitemtest.cpp:120:0: style: The function 'test_setWrongAnswer3' is never used. [unusedFunction]
+
+^
+tests/PersistenceTest/tst_persistencetest.cpp:67:0: style: The function 'test_wrong_file_name' is never used. [unusedFunction]
+
+^
+nofile:0:0: information: Cppcheck cannot find all the include files (use --check-config for details) [missingInclude]
+
