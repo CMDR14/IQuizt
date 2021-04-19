@@ -11,7 +11,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: cppcheck
-      uses: Bedzior/cppcheck-action@v1.0
+      uses: Bedzior/cppcheck-action
       with:
         github_token: ${{ secrets.GITHUB_TOKEN}}
         
