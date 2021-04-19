@@ -5,13 +5,13 @@ on: [ push , pull_request ]
  
 jobs:
 
-  cppcheck:
+  analyse:
     runs-on: ubuntu-latest
     
     steps:
     - uses: actions/checkout@v2
     - name: cppcheck
-      uses: deep5050/cppcheck-action@main
+      uses: Bedzior/cppcheck-action@v1.0
       with:
         github_token: ${{ secrets.GITHUB_TOKEN}}
         
@@ -21,7 +21,7 @@ jobs:
           #GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           #BRANCH_NAME: 'static_analysis' #branch name goes here
     - name: Upload artifact
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v1
       with:
         name: IQuizt cppcheck Errorlist
         path: cppcheck_report.txt        
