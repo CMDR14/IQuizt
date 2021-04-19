@@ -14,7 +14,7 @@ jobs:
       uses: Bedzior/cppcheck-action@main
       with:
         enabled checks: all
-        enable inconclusive: false
+        enable inconclusive: true
         generate report: true
     #- name: cppcheck
       #uses:  deep5050/cppcheck-action@main
