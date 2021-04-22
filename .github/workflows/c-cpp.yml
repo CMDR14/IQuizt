@@ -36,14 +36,7 @@ jobs:
         sudo apt-get update
         sudo apt-get install -y build-essential cmake qt5-default cppcheck
     - name: create build folder, build test and run it
-      run : |
-        cd ..
-        mkdir build_test
-        cd build_test
-        cmake ../IQuizt
-        make PersistenceTest
-        cd ./tests/PersistenceTest/
-        ctest
+      run : bash ./test_build.sh PersistenceTest -ctest
         
   test-quizitemeditor:
     runs-on: ubuntu-latest
@@ -55,15 +48,7 @@ jobs:
         sudo apt-get update
         sudo apt-get install -y build-essential cmake qt5-default cppcheck
     - name: create build folder, build test and run it
-      run : |
-        cd ..
-        mkdir build_test
-        cd build_test
-        cmake ../IQuizt
-        make QuizItemEditorTest
-#        cd ./tests/quizitemedtiortest/
-#        ctest
-#        Couldn't test because it needs a display. 
+      run : bash ./test_build.sh quizitemedtiortest
  
   test-quizitem:
     runs-on: ubuntu-latest
@@ -75,14 +60,7 @@ jobs:
         sudo apt-get update
         sudo apt-get install -y build-essential cmake qt5-default cppcheck
     - name: create build folder, build test and run it
-      run : |
-        cd ..
-        mkdir build_test
-        cd build_test
-        cmake ../IQuizt
-        make QuizItemTest
-        cd ./tests/QuizItemTest/
-        ctest
+      run : bash ./test_build.sh QuizItemTest -ctest
 
   create-documentation:
     needs: build
