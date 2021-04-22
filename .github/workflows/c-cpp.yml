@@ -3,34 +3,7 @@ name: C/C++ CI
 on: [ push , pull_request ]
 
  
-jobs:
-
-  static_analyse:
-    runs-on: ubuntu-latest
-    
-    steps:
-    - uses: actions/checkout@v2
-    - name: Run Cppcheck
-      uses: Bedzior/cppcheck-action@main
-      with:
-        enabled checks: all
-        enable inconclusive: true
-        generate report: true
-    #- name: cppcheck
-      #uses:  deep5050/cppcheck-action@main
-      #with:
-        #github_token: ${{ secrets.GITHUB_TOKEN}}
-        
-    #- name: publish report    
-      #uses: mikeal/publish-to-github-action@master
-      #env:
-          #GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          #BRANCH_NAME: 'static_analysis' #branch name goes here
-    - name: Upload artifact
-      uses: actions/upload-artifact@v1
-      with:
-        name: IQuizt cppcheck Errorlist
-        path: cppcheck_report.txt        
+jobs:  
         
   build:
 
