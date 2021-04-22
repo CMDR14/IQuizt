@@ -44,7 +44,7 @@ find_program(CMAKE_CXX_CPPCHECK NAMES cppcheck)
 if(NOT CMAKE_CXX_CPPCHECK)
 message(FATAL_ERROR "Could not find the program cppcheck.")
 endif()
-list(APPEND CMAKE_CXX_CPPCHECK "--enable=all"  "--error-exitcode=10" "--suppress=unmatchedSuppression:*") #"--suppress=missingIncludeSystem")
+list(APPEND CMAKE_CXX_CPPCHECK "--enable=all"  "--suppress=unmatchedSuppression:*") #"--error-exitcode=10"  "--suppress=missingIncludeSystem")
 
 
 add_subdirectory(tests)
