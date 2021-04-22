@@ -40,6 +40,14 @@ find_package(Qt5Widgets REQUIRED)
 #file(GLOB MODEL_FILES ${SRC_MODEL}/*.cpp)
 #file(GLOB VIEW_FILES ${SRC_VIEW}/*.cpp)
 
+
+find_program(CMAKE_CXX_CPPCHECK NAMES cppcheck)
+if(NOT CMAKE_CXX_CPPCHECK)
+message(FATAL_ERROR "Could not find the program cppcheck.")
+endif()
+list(APPEND CMAKE_CXX_CPPCHECK "--enable=all"  "--suppress=unmatchedSuppression:*"   "--suppress=missingIncludeSystem"  "--error-exitcode=10" )
+
+
 add_subdirectory(tests)
 add_subdirectory(src)
 
