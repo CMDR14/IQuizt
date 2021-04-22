@@ -19,4 +19,7 @@ then
   then
     ctest
   fi
+else
+  echo "Make failed"
+  exit 1
 fi
