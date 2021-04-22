@@ -1,27 +1,45 @@
 #include "model.h"
 #include <QDebug>
 
-Model::Model(Persistence* p)
+
+Model::Model(Persistence* p) : profile_(new Profile())
 {
     p_ = p;
-    //QVector<NameAndPath> list_of_quizzes;
-    QVector<NameAndPath> *list_of_quizzes = new QVector<NameAndPath>();
 
 }
 
 Model::~Model()
 {
-    delete list_of_quizzes;
 }
 
-void Model::open_my_profile()
+bool Model::load_my_profile(QString prof_name)
 {
-    qDebug() << "Model::open_my_profile";
+    QVector<QString> loadProfData;
+    if(p_->loadProfile(loadProfData,prof_name))
+    {
+        profile_->setName(loadProfData[0]);
+        profile_->setLevel(loadProfData[1].toInt());
+        profile_->setCorrect_counter(loadProfData[2].toInt());
+        profile_->setWrong_counter(loadProfData[3].toInt());
+
+        return true;
+    }
+    return false;
 }
 
-void Model::edit_active_quiz()
+bool Model::create_my_profile(QString prof_name)
 {
-    qDebug() << "Model::edit_active_quiz(";
+    profile_->setName(prof_name);
+            //qDebug() << prof_name;
+    QVector<QString> profData;
+    profData.append(profile_->name());
+    profData.append(QString::number(profile_->getLevel()));
+    profData.append(QString::number(profile_->getCorrect_counter()));
+    profData.append(QString::number(profile_->getWrong_counter()));
+
+
+
+    return p_->createProfile(prof_name, profData);
 }
 
 void Model::load_existing_quiz()
@@ -33,9 +51,9 @@ void Model::load_existing_quiz()
 void Model::list_quizzes()
 {
     qDebug() << "list quizzes func";
-    list_of_quizzes = new QVector<NameAndPath>();
+    list_of_quizzes.clear();
     qDebug() << "list quizzes func2";
-    if(!(p_->get_quiz_sets(*list_of_quizzes)))
+    if(!(p_->get_quiz_sets(list_of_quizzes)))
     {
         qDebug() << "Quiz loading unsuccesful!";
         return;
@@ -44,9 +62,14 @@ void Model::list_quizzes()
     qDebug() << "Quiz loading succesful!";
 }
 
-QVector<NameAndPath> *Model::getList_of_quizzes() const
+QVector<NameAndPath> Model::getList_of_quizzes() const
 {
     return list_of_quizzes;
+}
+
+Profile *Model::getProfile() const
+{
+    return profile_;
 }
 
 

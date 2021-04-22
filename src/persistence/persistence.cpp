@@ -72,9 +72,9 @@ bool Persistence::loadQuiz(QVector<QuizItem> &loadQuizData)
     return true;
 }
 
-bool Persistence::saveProfile(QVector<QString> &SaveProfileData)
+bool Persistence::saveProfile(QVector<QString> &SaveProfileData, QString profileName)
 {
-    QFile file("valaminev.profile"); //vagy .quiz
+    QFile file(profileName + ".profile"); //vagy .quiz
     if(!file.open(QFile::WriteOnly))
         return false;
 
@@ -91,9 +91,9 @@ bool Persistence::saveProfile(QVector<QString> &SaveProfileData)
     return true;
 }
 
-bool Persistence::loadProfile(QVector<QString> &LoadProfileData)
+bool Persistence::loadProfile(QVector<QString> &LoadProfileData, QString profileName)
 {
-    QFile file("valaminev.profile");
+    QFile file(profileName + ".profile");
     if(!file.open(QFile::ReadOnly))
             return false;
 
@@ -102,6 +102,24 @@ bool Persistence::loadProfile(QVector<QString> &LoadProfileData)
     while(!stream.atEnd())
     {
         LoadProfileData.append(stream.readLine());
+    }
+
+    file.close();
+
+    return true;
+}
+
+bool Persistence::createProfile(QString& profileName, QVector<QString>& profileData)
+{
+    QFile file(profileName + ".profile");
+    if(!file.open(QIODevice::WriteOnly | QIODevice::Text))
+        return false;
+
+    QTextStream out(&file);
+
+    for(int i = 0; i < profileData.size(); ++i)
+    {
+        out << profileData[i] << "\n";
     }
 
     file.close();

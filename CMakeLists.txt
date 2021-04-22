@@ -21,9 +21,10 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 
-#set(CMAKE_PREFIX_PATH "C:/Qt/5.15.0/mingw81_64") #$ENV{QTDIR})
+#set(CMAKE_PREFIX_PATH "R:/Qt/5.12.2/mingw81_64") #$ENV{QTDIR})
 find_package(Qt5Core REQUIRED)
 find_package(Qt5Widgets REQUIRED)
+
 
 #find_package(Qt6 COMPONENTS Core)
 #find_package(Qt6 COMPONENTS Widgets)

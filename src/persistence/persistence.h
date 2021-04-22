@@ -20,8 +20,10 @@ public:
     bool saveQuiz(const QVector<QuizItem> &SaveQuizData);
     bool loadQuiz(QVector<QuizItem> &loadQuizData);
 
-    bool saveProfile(QVector<QString> &SaveProfileData);
-    bool loadProfile(QVector<QString> &LoadProfileData);
+    bool saveProfile(QVector<QString> &SaveProfileData, QString profileName);
+    bool loadProfile(QVector<QString> &LoadProfileData, QString profileName);
+
+    bool createProfile(QString& profileName, QVector<QString>& profileData);
 
 private:
     QString path_;
