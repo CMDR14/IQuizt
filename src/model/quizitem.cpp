@@ -36,10 +36,10 @@ int QuizItem::getCorrects() const
 }
 
 
-/** \brief A new try with this item
+/** \brief A new try with this item  
  * 
- * User tried to answer this quiz question and the item can store this in it's own *statistic*.
- * \param correct is the boolean to specify if the user answered the question correctly.
+ * User tried to answer this quiz question and the item can store this in it's own *statistic*.  
+ * \param correct is the boolean to specify if the user answered the question correctly.  
  * */
 void QuizItem::newTry(bool correct)
 {
@@ -82,19 +82,19 @@ void QuizItem::setCorrects(int corrects)
     stat_[1] = corrects;
 }
 
-/** \brief Operator overload to write a QuizItem to a QTextStream
+/** \brief Operator overload to write a QuizItem to a QTextStream  
  * 
- * With this operator you can easily write a QuizItem to a QTextStream.
- * Sysntax:
+ * With this operator you can easily write a QuizItem to a QTextStream.  
+ * Sysntax:  
  * ~~~~~~~~~~~~~~~
- * QTestStream ts;
- * QuizItem qi;
- * ts << qi;
+ * QTestStream ts;  
+ * QuizItem qi;  
+ * ts << qi;  
  * ~~~~~~~~~~~~~~~
- * \param os a short name for outstream. This is the reference of a QTextStream to write in.
- * \param q a short QuizItem. This constant reference to a QuizItem which will be writen in the QTextStream
- * \returns QTextSream which helps to use it like this: `c++ os << something << otherthing;`
- * \see QTextStream
+ * \param os a short name for outstream. This is the reference of a QTextStream to write in.  
+ * \param q a short QuizItem. This constant reference to a QuizItem which will be writen in the QTextStream  
+ * \returns QTextSream which helps to use it like this: `c++ os << something << otherthing;`  
+ * \see QTextStream  
  * */
 QTextStream& operator<<(QTextStream& os, const QuizItem& q)
 {
@@ -107,6 +107,20 @@ QTextStream& operator<<(QTextStream& os, const QuizItem& q)
     return os;
 }
 
+/** \brief Operator overload to read a QuizItem from a QTextStream  
+ * 
+ * With this operator you can easily read a QuizItem from a QTextStream.  
+ * Sysntax:  
+ * ~~~~~~~~~~~~~~~
+ * QTestStream ts;  
+ * QuizItem qi;  
+ * ts >> qi;  
+ * ~~~~~~~~~~~~~~~
+ * \param is a short name for instream. This is the reference of a QTextStream to read from.  
+ * \param q a short QuizItem. This reference to a QuizItem which will be filled with the read information from the QTextStream  
+ * \returns QTextSream which helps to use it like this: `c++ os >> something >> otherthing;`  
+ * \see QTextStream  
+ * */
 QTextStream& operator>>(QTextStream& is, QuizItem& q)
 {
     QString question, right, wrong1, wrong2, wrong3;
