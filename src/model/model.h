@@ -12,7 +12,7 @@
 class Model
 {
 public:
-    Model(Persistence* p);
+    explicit Model(Persistence* p);
     Model(const Model &m); //copy constructor
     Model& operator=(const Model &other); //overload
 
