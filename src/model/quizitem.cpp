@@ -47,27 +47,27 @@ void QuizItem::newTry(bool correct)
     stat_[1] = correct ? stat_[1] + 1 : stat_[1];
 }
 
-void QuizItem::setQuestion(QString question)
+void QuizItem::setQuestion(QString const &question)
 {
     quiz_item_[0] = question;
 }
 
-void QuizItem::setRightAnswer(QString right_answer)
+void QuizItem::setRightAnswer(QString const &right_answer)
 {
     quiz_item_[1] = right_answer;
 }
 
-void QuizItem::setWrongAnswer1(QString wrong_answer_1)
+void QuizItem::setWrongAnswer1(QString const &wrong_answer_1)
 {
     quiz_item_[2] = wrong_answer_1;
 }
 
-void QuizItem::setWrongAnswer2(QString wrong_answer_2)
+void QuizItem::setWrongAnswer2(QString const &wrong_answer_2)
 {
     quiz_item_[3] = wrong_answer_2;
 }
 
-void QuizItem::setWrongAnswer3(QString wrong_answer_3)
+void QuizItem::setWrongAnswer3(QString const &wrong_answer_3)
 {
     quiz_item_[4] = wrong_answer_3;
 }

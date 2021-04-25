@@ -10,7 +10,7 @@
 class Profile
 {
 public:
-    Profile(QString name = "", int level = 1, int correct_c = 0, int wrong_c = 0);
+    Profile(QString const &name = "", int level = 1, int correct_c = 0, int wrong_c = 0);
 
     QString name() const;
     void setName(const QString &name);
