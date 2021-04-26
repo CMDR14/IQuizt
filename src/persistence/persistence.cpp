@@ -89,7 +89,7 @@ bool Persistence::saveQuiz(const NameAndPath &NamePath, const QVector<QuizItem> 
  * \returns true if everything is correct.
  * \see <a href="https://doc.qt.io/qt-5/qtextstream.html">QTextStream</a>
  * */
-bool Persistence::loadQuiz(const NameAndPath &NamePath, QVector<QuizItem> &loadQuizData)
+bool Persistence::loadQuiz(NameAndPath &NamePath, QVector<QuizItem> &loadQuizData)
 {
     QFile file(NamePath.path);
     if(!file.open(QFile::ReadOnly))
