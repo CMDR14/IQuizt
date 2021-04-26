@@ -14,10 +14,10 @@
 
 /** \brief This class functions as the main GUI of the program.
  * 
- * MainWidget is inherited from the \link https://doc.qt.io/qt-5/qwidget.html QWidget \endlink class.
+ * MainWidget is inherited from the <a href="https://doc.qt.io/qt-5/qwidget.html">QWidget<\a> class.
  * Has a few spaces for different functions.
  * 
- * \see \link https://doc.qt.io/qt-5/qwidget.html QWidget \endlink
+ * \see <a href="https://doc.qt.io/qt-5/qwidget.html">QWidget<\a>
  */
 class MainWidget : public QWidget
 {

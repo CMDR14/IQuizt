@@ -94,7 +94,7 @@ void QuizItem::setCorrects(int corrects)
  * \param os a short name for outstream. This is the reference of a QTextStream to write in.  
  * \param q a short QuizItem. This constant reference to a QuizItem which will be writen in the QTextStream  
  * \returns QTextSream which helps to use it like this: `c++ os << something << otherthing;`  
- * \see QTextStream  
+ * \see <a href="https://doc.qt.io/qt-5/qtextstream.html">QTextStream</a>
  * */
 QTextStream& operator<<(QTextStream& os, const QuizItem& q)
 {
@@ -119,7 +119,7 @@ QTextStream& operator<<(QTextStream& os, const QuizItem& q)
  * \param is a short name for instream. This is the reference of a QTextStream to read from.  
  * \param q a short QuizItem. This reference to a QuizItem which will be filled with the read information from the QTextStream  
  * \returns QTextSream which helps to use it like this: `c++ os >> something >> otherthing;`  
- * \see QTextStream  
+ * \see <a href="https://doc.qt.io/qt-5/qtextstream.html">QTextStream</a>
  * */
 QTextStream& operator>>(QTextStream& is, QuizItem& q)
 {
