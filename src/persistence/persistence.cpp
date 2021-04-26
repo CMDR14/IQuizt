@@ -57,13 +57,15 @@ bool Persistence::get_quiz_sets(QVector<NameAndPath>& quiz_sets) {
  * \returns true if everything is correct.
  * \see <a href="https://doc.qt.io/qt-5/qtextstream.html">QTextStream</a>
  * */
-bool Persistence::saveQuiz(const QVector<QuizItem> &SaveQuizData)
+bool Persistence::saveQuiz(const NameAndPath &NamePath, const QVector<QuizItem> &SaveQuizData)
 {
-    QFile file("valaminev.sav"); //vagy .quiz, ha a savequizdataban tároljuk akkor annak mondjuk a 0. indexű eleme
+    QFile file(NamePath.path);
     if(!file.open(QFile::WriteOnly))
         return false;
 
     QTextStream stream(&file);
+
+    stream << NamePath.name << "\n";
 
     for(int i = 0; i < SaveQuizData.size(); ++i)
     {
@@ -87,15 +89,18 @@ bool Persistence::saveQuiz(const QVector<QuizItem> &SaveQuizData)
  * \returns true if everything is correct.
  * \see <a href="https://doc.qt.io/qt-5/qtextstream.html">QTextStream</a>
  * */
-bool Persistence::loadQuiz(QVector<QuizItem> &loadQuizData)
+bool Persistence::loadQuiz(const NameAndPath &NamePath, QVector<QuizItem> &loadQuizData)
 {
-    QFile file("valaminev.sav");
+    QFile file(NamePath.path);
     if(!file.open(QFile::ReadOnly))
             return false;
 
     QTextStream stream(&file);
     loadQuizData = QVector<QuizItem>();
     QuizItem tmp("", "", "", "", "");
+
+    stream >> NamePath.name;
+
     while( !stream.atEnd() ) {
         stream >> tmp;
         loadQuizData.append(tmp);
