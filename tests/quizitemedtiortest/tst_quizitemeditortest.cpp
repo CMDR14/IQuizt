@@ -13,8 +13,8 @@ class QuizItemEditorTest : public QObject
 public:
     QuizItemEditorTest();
     ~QuizItemEditorTest();
-    QuizItemEditor* qie;
-    QuizItem* qi;
+    QuizItemEditor* qie = nullptr;
+    QuizItem* qi = nullptr;
 
 private slots:
     void initTestCase();
@@ -46,7 +46,7 @@ QuizItemEditorTest::QuizItemEditorTest()
 
 QuizItemEditorTest::~QuizItemEditorTest()
 {
-
+    qie->deleteLater();
 }
 
 void QuizItemEditorTest::test_case_QuizItem()

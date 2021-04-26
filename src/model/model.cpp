@@ -8,6 +8,35 @@ Model::Model(Persistence* p) : profile_(new Profile())
 
 }
 
+Model::Model(const Model &m) : profile_(new Profile())
+{
+    p_ = m.p_;
+}
+
+Model& Model::operator=(const Model& other)
+{
+  if (this == &other) //self-assignment guard;
+      return *this;
+  if (list_of_quizzes.size() != other.list_of_quizzes.size())
+  {
+      list_of_quizzes.clear();
+  }
+  p_ = other.p_;
+  profile_ = other.profile_;
+  std::copy(other.list_of_quizzes.begin(), other.list_of_quizzes.end(), list_of_quizzes.begin());
+  return *this;
+}
+
+
+/*Model& Model::operator=(Model other)
+{
+    std::swap(Model::p_, other.p_);
+    std::swap(Model::active_quiz, other.active_quiz);
+    std::swap(Model::profile_, other.profile_);
+    return *this;
+}*/
+
+
 Model::~Model()
 {
 }

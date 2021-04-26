@@ -12,7 +12,10 @@
 class Model
 {
 public:
-    Model(Persistence* p);
+    explicit Model(Persistence* p);
+    Model(const Model &m); //copy constructor
+    Model& operator=(const Model &other); //overload
+
     ~Model();
     QVector<QuizItem> active_quiz;
     bool load_my_profile(QString prof_name);
@@ -27,7 +30,7 @@ public:
     Profile *getProfile() const;
 
 private:
-    Persistence* p_;
+    Persistence* p_ = nullptr;
     QVector<NameAndPath> list_of_quizzes;
     Profile* profile_;
 };

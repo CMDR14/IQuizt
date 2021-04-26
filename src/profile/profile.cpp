@@ -1,6 +1,6 @@
 #include "profile.h"
 
-Profile::Profile(QString name, int level, int correct_c, int wrong_c) :
+Profile::Profile(QString const &name, int level, int correct_c, int wrong_c) :
     name_(name),
     level_(level),
     correct_counter(correct_c),
