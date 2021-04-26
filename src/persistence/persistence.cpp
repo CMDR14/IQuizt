@@ -72,7 +72,7 @@ bool Persistence::loadQuiz(QVector<QuizItem> &loadQuizData)
     return true;
 }
 
-bool Persistence::saveProfile(QVector<QString> &SaveProfileData, QString profileName)
+bool Persistence::saveProfile(QVector<QString> &SaveProfileData, QString const &profileName)
 {
     QFile file(profileName + ".profile"); //vagy .quiz
     if(!file.open(QFile::WriteOnly))
@@ -91,7 +91,7 @@ bool Persistence::saveProfile(QVector<QString> &SaveProfileData, QString profile
     return true;
 }
 
-bool Persistence::loadProfile(QVector<QString> &LoadProfileData, QString profileName)
+bool Persistence::loadProfile(QVector<QString> &LoadProfileData, QString const &profileName)
 {
     QFile file(profileName + ".profile");
     if(!file.open(QFile::ReadOnly))
@@ -109,7 +109,7 @@ bool Persistence::loadProfile(QVector<QString> &LoadProfileData, QString profile
     return true;
 }
 
-bool Persistence::createProfile(QString& profileName, QVector<QString>& profileData)
+bool Persistence::createProfile(QString const &profileName, QVector<QString>& profileData)
 {
     QFile file(profileName + ".profile");
     if(!file.open(QIODevice::WriteOnly | QIODevice::Text))
