@@ -15,12 +15,6 @@ set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 enable_testing()
 
-find_program(CMAKE_CXX_CPPCHECK NAMES cppcheck)
-if(NOT CMAKE_CXX_CPPCHECK)
-message(FATAL_ERROR "Could not find the program cppcheck.")
-endif()
-list(APPEND CMAKE_CXX_CPPCHECK "--enable=all"  "--suppress=unmatchedSuppression:*"   "--suppress=missingIncludeSystem"  "--suppress=preprocessorErrorDirective"  "--suppress=unusedFunction"  "--error-exitcode=10" )
-
 add_executable(PersistenceTest tst_persistencetest.cpp ../../src/persistence/persistence.cpp ../../src/model/quizitem.cpp)
 add_test(NAME PersistenceTest COMMAND PersistenceTest)
 
