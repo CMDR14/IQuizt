@@ -101,24 +101,13 @@ void MainWidget::my_profile_clicked()
     }
 }
 
+/// \brief Scans for existing profile files.
 bool MainWidget::scan_for_profile()
 {
-    bool profile_exists = false;
-    qDebug() << "szkenneles";
-    QDir dir(QDir::currentPath());
-    for(auto &entry : dir.entryList(QDir::Files))
-    {
-        if(entry.split('.').last()=="profile")
-        {
-
-            profile_exists = true;
-            current_profile = entry.split('.').first();
-        }
-    }
-
-    return profile_exists;
+    return model_->scan_for_profile(current_profile);
 }
 
+/// \brief Function that creates a new profile.
 void MainWidget::create_profile()
 {
     dialog_->setWindowTitle("Enter your name");
@@ -142,6 +131,7 @@ void MainWidget::create_profile()
 
 }
 
+/// \brief Function that displays the data in the profile file.
 void MainWidget::display_profile_data()
 {
     remove_all_widgets(VBoxLayout_);
@@ -162,6 +152,7 @@ void MainWidget::display_profile_data()
     widgets_.append(wrong);
 }
 
+/// \brief Conveniency function that deletes all widgets.
 void MainWidget::remove_all_widgets(QLayout *layout)
 {
     QWidget* w;
@@ -173,6 +164,7 @@ void MainWidget::remove_all_widgets(QLayout *layout)
     widgets_.clear();
 }
 
+/// \brief Getter of the current profile.
 QString MainWidget::getCurrent_profile() const
 {
     return current_profile;

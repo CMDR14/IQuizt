@@ -34,6 +34,8 @@ public:
 
     bool createProfile(QString const &profileName, QVector<QString>& profileData);
 
+    bool scan_for_profile(QString &current_profile);
+
 private:
     QString path_;
 

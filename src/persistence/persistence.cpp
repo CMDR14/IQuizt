@@ -78,6 +78,7 @@ bool Persistence::saveQuiz(const NameAndPath &NamePath, const QVector<QuizItem> 
     return true;
 }
 
+
 /** \brief Loads a quiz set from a file.
  * 
  * Opens the file given by the path.
@@ -111,6 +112,18 @@ bool Persistence::loadQuiz(NameAndPath &NamePath, QVector<QuizItem> &loadQuizDat
     return true;
 }
 
+
+/** \brief Function that saves profile data into a file.
+ *
+ * Opens the file given by the path.
+ * Creates a <a href="https://doc.qt.io/qt-5/qtextstream.html">QTextStream</a> from the file.
+ * Goes through the vector and writes the data into the file.
+ * \param SaveProfileData is the data that will be written into the file.
+ * \param profileName, this is needed to find the correct file to write into.
+ * \returns true if everything is correct.
+ * \see <a href="https://doc.qt.io/qt-5/qtextstream.html">QTextStream</a>
+ * */
+
 bool Persistence::saveProfile(QVector<QString> &SaveProfileData, QString const &profileName)
 {
     QFile file(profileName + ".profile"); //vagy .quiz
@@ -130,6 +143,17 @@ bool Persistence::saveProfile(QVector<QString> &SaveProfileData, QString const &
     return true;
 }
 
+/** \brief Function that loads profile data and writes it to a vector.
+ *
+ * Opens the file given by the path.
+ * Creates a <a href="https://doc.qt.io/qt-5/qtextstream.html">QTextStream</a> from the file.
+ * Goes through the file and writes the data into a vector
+ * \param LoadProfileData is the vector that will be appended with data.
+ * \param profileName, this is needed to find the correct file to write from.
+ * \returns true if everything is correct.
+ * \see <a href="https://doc.qt.io/qt-5/qtextstream.html">QTextStream</a>
+ * */
+
 bool Persistence::loadProfile(QVector<QString> &LoadProfileData, QString const &profileName)
 {
     QFile file(profileName + ".profile");
@@ -148,6 +172,17 @@ bool Persistence::loadProfile(QVector<QString> &LoadProfileData, QString const &
     return true;
 }
 
+/** \brief Function that creates a profile.
+ *
+ * Opens the file given by the path.
+ * Creates a <a href="https://doc.qt.io/qt-5/qtextstream.html">QTextStream</a> from the file.
+ * Goes through the vector and writes the data into the file.
+ * \param profileName is the name of the current profile.
+ * \param profileData is a vector which has the data that will be written into the file.
+ * \returns true if everything is correct.
+ * \see <a href="https://doc.qt.io/qt-5/qtextstream.html">QTextStream</a>
+ * */
+
 bool Persistence::createProfile(QString const &profileName, QVector<QString>& profileData)
 {
     QFile file(profileName + ".profile");
@@ -164,4 +199,32 @@ bool Persistence::createProfile(QString const &profileName, QVector<QString>& pr
     file.close();
 
     return true;
+}
+
+/** \brief Function that scans for a profile.
+ *
+ * Opens the current working directory.
+ * Function uses <a href="https://doc.qt.io/qt-5/qdir.html">QDir</a> to open the directory and go through files.
+ * Searches for any file that has the .profile extension.
+ * \param current_profile is the name of the current profile.
+ * \returns true if everything is correct.
+ * \see <a href="https://doc.qt.io/qt-5/qdir.html">QDir</a>
+ * */
+
+bool Persistence::scan_for_profile(QString &current_profile)
+{
+    bool profile_exists = false;
+    qDebug() << "szkenneles";
+    QDir dir(QDir::currentPath());
+    for(auto &entry : dir.entryList(QDir::Files))
+    {
+        if(entry.split('.').last()=="profile")
+        {
+
+            profile_exists = true;
+            current_profile = entry.split('.').first();
+        }
+    }
+
+    return profile_exists;
 }

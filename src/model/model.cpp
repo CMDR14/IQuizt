@@ -17,6 +17,7 @@ Model& Model::operator=(const Model& other)
 {
   if (this == &other) //self-assignment guard;
       return *this;
+
   if (list_of_quizzes.size() != other.list_of_quizzes.size())
   {
       list_of_quizzes.clear();
@@ -26,15 +27,6 @@ Model& Model::operator=(const Model& other)
   std::copy(other.list_of_quizzes.begin(), other.list_of_quizzes.end(), list_of_quizzes.begin());
   return *this;
 }
-
-
-/*Model& Model::operator=(Model other)
-{
-    std::swap(Model::p_, other.p_);
-    std::swap(Model::active_quiz, other.active_quiz);
-    std::swap(Model::profile_, other.profile_);
-    return *this;
-}*/
 
 
 Model::~Model()
@@ -59,7 +51,6 @@ bool Model::load_my_profile(QString prof_name)
 bool Model::create_my_profile(QString prof_name)
 {
     profile_->setName(prof_name);
-            //qDebug() << prof_name;
     QVector<QString> profData;
     profData.append(profile_->name());
     profData.append(QString::number(profile_->getLevel()));
@@ -69,6 +60,11 @@ bool Model::create_my_profile(QString prof_name)
 
 
     return p_->createProfile(prof_name, profData);
+}
+
+bool Model::scan_for_profile(QString &current_profile)
+{
+    return p_->scan_for_profile(current_profile);
 }
 
 void Model::load_existing_quiz()
