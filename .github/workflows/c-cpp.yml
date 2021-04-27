@@ -90,6 +90,7 @@ jobs:
       with:
         github_token: ${{ secrets.GITHUB_TOKEN}}
         enable: all
+        other_options: --suppress=missingIncludeSystem --suppress=unusedFunction --suppress=preprocessorErrorDirective
     - name: show_report
       run: bash ./cppcheck_action_result.sh cppcheck_report.txt
         
