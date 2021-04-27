@@ -3,23 +3,19 @@
 dir="build"
 project_dir="IQuizt"
 
-
-#delete, create and move to dir
+#create and move to build directory
 cd ..
-#if [ -d "$dir" ] eq false; then
-#    rm -rf $dir
-    mkdir $dir
-#fi
+mkdir $dir
 cd $dir
 
 #build project
 cmake ../$project_dir
-#cmake --build . --
-make
 
-#run tests
-#./tests/QuizItemTest
-
-#run the app
-#./$project_dir
+if make
+then
+  echo "Make succeeded!"
+else
+  echo "Make failed!"
+  exit 1
+fi
 
