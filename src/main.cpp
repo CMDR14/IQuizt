@@ -5,8 +5,8 @@
 
 int main(int argc, char *argv[])
 {
-    int* a = new int();
-    *a=1;
+    int* b = new int();
+    *b=1;
     
     QApplication a(argc, argv);
     Persistence* p = new Persistence();
