@@ -5,6 +5,9 @@
 
 int main(int argc, char *argv[])
 {
+    int* a = new int();
+    *a=1;
+    
     QApplication a(argc, argv);
     Persistence* p = new Persistence();
     Model* m = new Model(p);
