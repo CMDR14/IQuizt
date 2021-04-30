@@ -13,6 +13,12 @@ Model::Model(const Model &m) : profile_(new Profile())
     p_ = m.p_;
 }
 
+
+/** \brief operator '=' overload
+ *
+ * Overload the '=' operator which willbe used in copy cpnstructor
+ * \param gets a Model which you want to copy
+ * */
 Model& Model::operator=(const Model& other)
 {
   if (this == &other) //self-assignment guard;
@@ -33,6 +39,12 @@ Model::~Model()
 {
 }
 
+/** \brief Load a profile
+ *
+ * Load a profile and use loadProfile function from persistence
+ * \param gets a profile name
+ * * \returns boolean which will be true if the load was successfull
+ * */
 bool Model::load_my_profile(QString prof_name)
 {
     QVector<QString> loadProfData;
@@ -48,6 +60,12 @@ bool Model::load_my_profile(QString prof_name)
     return false;
 }
 
+/** \brief Create a profile
+ *
+ * Create a profile and use createProfile function from persistence
+ * \param gets a profile name
+ * * \returns boolean which will be true if the load was successfull
+ * */
 bool Model::create_my_profile(QString prof_name)
 {
     profile_->setName(prof_name);
@@ -73,6 +91,12 @@ void Model::load_existing_quiz()
 
 }
 
+
+/** \brief List quizzes
+ *
+ * List the quizzes from your folder
+ * Use get_quiz_sets function from Persistence
+ * */
 void Model::list_quizzes()
 {
     qDebug() << "list quizzes func";
