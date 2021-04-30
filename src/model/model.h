@@ -13,16 +13,15 @@ class Model
 {
 public:
     explicit Model(Persistence* p);
-    Model(const Model &m); //copy constructor
+    Model(const Model &m) = delete; //copy constructor
     Model& operator=(const Model &other); //overload
 
     ~Model();
-    QVector<QuizItem> active_quiz;
     bool load_my_profile(QString prof_name);
     bool create_my_profile(QString prof_name);
     bool scan_for_profile(QString &current_profile);
     void edit_active_quiz();
-    void load_existing_quiz();
+    static void load_existing_quiz();
     void list_quizzes();
 
 
@@ -34,6 +33,7 @@ private:
     Persistence* p_ = nullptr;
     QVector<NameAndPath> list_of_quizzes;
     Profile* profile_;
+    QVector<QuizItem> active_quiz;
 };
 
 #endif // MODEL_H

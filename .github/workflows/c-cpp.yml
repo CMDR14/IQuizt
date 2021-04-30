@@ -35,7 +35,7 @@ jobs:
       run: |
         sudo apt-get update
         sudo apt-get install -y build-essential cmake qt5-default cppcheck
-    - name: create build folder, build test and run it
+    - name: build test and run it
       run : bash ./test_build.sh PersistenceTest -ctest
         
   test-quizitemeditor:
@@ -47,7 +47,7 @@ jobs:
       run: |
         sudo apt-get update
         sudo apt-get install -y build-essential cmake qt5-default cppcheck
-    - name: create build folder, build test and run it
+    - name: build test and run it
       run : bash ./test_build.sh quizitemedtiortest
  
   test-quizitem:
@@ -59,7 +59,7 @@ jobs:
       run: |
         sudo apt-get update
         sudo apt-get install -y build-essential cmake qt5-default cppcheck
-    - name: create build folder, build test and run it
+    - name: build test and run it
       run : bash ./test_build.sh QuizItemTest -ctest
 
   create-documentation:
@@ -78,5 +78,20 @@ jobs:
       with:
         name: IQuizt Documentation
         path: docs/*
+
+  cppcheck:
+    needs: build
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v2
+    - name: cppcheck
+      uses:  deep5050/cppcheck-action@main
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN}}
+        enable: all
+        other_options: --suppress=missingIncludeSystem --suppress=unusedFunction --suppress=preprocessorErrorDirective --suppress=unmatchedSuppression:* --suppress=missingInclude
+    - name: show_report
+      run: bash ./cppcheck_action_result.sh cppcheck_report.txt
         
         

@@ -24,13 +24,16 @@ Model& Model::operator=(const Model& other)
   if (this == &other) //self-assignment guard;
       return *this;
 
-  if (list_of_quizzes.size() != other.list_of_quizzes.size())
+  if (list_of_quizzes.size() != other.list_of_quizzes.size() || active_quiz.size() != other.active_quiz.size())
   {
       list_of_quizzes.clear();
+      active_quiz.clear();
   }
   p_ = other.p_;
   profile_ = other.profile_;
   std::copy(other.list_of_quizzes.begin(), other.list_of_quizzes.end(), list_of_quizzes.begin());
+  std::copy(other.active_quiz.begin(), other.active_quiz.end(), active_quiz.begin());
+
   return *this;
 }
 

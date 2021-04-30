@@ -19,11 +19,7 @@
  * \returns `true` if everithing works fine.
  * */
 bool Persistence::get_quiz_sets(QVector<NameAndPath>& quiz_sets) {
-    //quiz_sets = new QVector<NameAndPath>();
-    //path_ = "";
-    //QDir dir(path_);
     QDir dir(QDir::currentPath());
-    //qDebug() << QDir::currentPath();
     for (auto &entry : dir.entryList(QDir::Files)) {
         if(entry.split('.').last()!="quiz")
             continue;
@@ -35,9 +31,7 @@ bool Persistence::get_quiz_sets(QVector<NameAndPath>& quiz_sets) {
         if(!file.open(QFile::ReadOnly))
                 return false;
 
-        //qDebug() << "Eljut a stream(&file)ig";
         QTextStream stream(&file);
-        //qDebug() << entry;
         current.name = stream.readLine();
 
         file.close();
@@ -69,7 +63,6 @@ bool Persistence::saveQuiz(const NameAndPath &NamePath, const QVector<QuizItem> 
 
     for(int i = 0; i < SaveQuizData.size(); ++i)
     {
-        //stream << SaveQuizData[i] << Qt::endl;
         stream << SaveQuizData[i] << "\n";
     }
 
@@ -134,7 +127,6 @@ bool Persistence::saveProfile(QVector<QString> &SaveProfileData, QString const &
 
     for(int i = 0; i < SaveProfileData.size(); ++i)
     {
-        //stream << SaveProfileData[i] << Qt::endl;
         stream << SaveProfileData[i] << "\n";
     }
 

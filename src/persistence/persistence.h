@@ -24,20 +24,17 @@ class Persistence
 public:
     explicit Persistence() {}
 
-    bool get_quiz_sets(QVector<NameAndPath>& quiz_sets);
+    static bool get_quiz_sets(QVector<NameAndPath>& quiz_sets);
 
-    bool saveQuiz(const NameAndPath &NamePath, const QVector<QuizItem> &SaveQuizData);
-    bool loadQuiz(NameAndPath &NamePath, QVector<QuizItem> &loadQuizData);
+    static bool saveQuiz(const NameAndPath &NamePath, const QVector<QuizItem> &SaveQuizData);
+    static bool loadQuiz(NameAndPath &NamePath, QVector<QuizItem> &loadQuizData);
 
-    bool saveProfile(QVector<QString> &SaveProfileData, QString const &profileName);
-    bool loadProfile(QVector<QString> &LoadProfileData, QString const &profileName);
+    static bool saveProfile(QVector<QString> &SaveProfileData, QString const &profileName);
+    static bool loadProfile(QVector<QString> &LoadProfileData, QString const &profileName);
 
-    bool createProfile(QString const &profileName, QVector<QString>& profileData);
+    static bool createProfile(QString const &profileName, QVector<QString>& profileData);
 
-    bool scan_for_profile(QString &current_profile);
-
-private:
-    QString path_;
+    static bool scan_for_profile(QString &current_profile);
 
 };
 

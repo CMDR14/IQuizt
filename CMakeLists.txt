@@ -22,11 +22,11 @@ find_package(Qt5Core REQUIRED)
 find_package(Qt5Widgets REQUIRED)
 
 
-find_program(CMAKE_CXX_CPPCHECK NAMES cppcheck)
-if(NOT CMAKE_CXX_CPPCHECK)
-message(FATAL_ERROR "Could not find the program cppcheck.")
-endif()
-list(APPEND CMAKE_CXX_CPPCHECK "--enable=all"  "--suppress=unmatchedSuppression:*"   "--suppress=missingIncludeSystem"  "--suppress=preprocessorErrorDirective"  "--suppress=unusedFunction"  "--error-exitcode=10" )
+#find_program(CMAKE_CXX_CPPCHECK NAMES cppcheck)
+#if(NOT CMAKE_CXX_CPPCHECK)
+#message(FATAL_ERROR "Could not find the program cppcheck.")
+#endif()
+#list(APPEND CMAKE_CXX_CPPCHECK "--enable=all"  "--suppress=unmatchedSuppression:*"   "--suppress=missingIncludeSystem"  "--suppress=preprocessorErrorDirective"  "--suppress=unusedFunction"  "--error-exitcode=10" )
 
 
 add_subdirectory(tests)
