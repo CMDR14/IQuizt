@@ -8,6 +8,13 @@
 #include <QWidget>
 #include "../model/quizitem.h"
 
+
+/** \brief QuizItemEditor class is a widget to edit a QuizItem by the user.  
+ * 
+ * This class is a childer of the QWidget class. It shows all the information from one given QuizItem and let's the user edit those informations.  
+ * The user changes the content of the line edits and then he can save these to the QuizItem.  
+ * \see QuizItem  
+ * */
 class QuizItemEditor : public QWidget
 {
     Q_OBJECT
@@ -18,6 +25,7 @@ public:
     explicit QuizItemEditor(QuizItem* quiz_item, QWidget *parent = nullptr);
 
 private:
+    ///The QuizItem which can be edited.  
     QuizItem* quiz_item_;
     QGridLayout* grid_layout_;
     QHBoxLayout* trys_layout_;

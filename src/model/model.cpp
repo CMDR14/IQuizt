@@ -8,6 +8,12 @@ Model::Model(Persistence* p) : profile_(new Profile())
 
 }
 
+
+/** \brief operator '=' overload
+ *
+ * Overload the '=' operator which willbe used in copy cpnstructor
+ * \param gets a Model which you want to copy
+ * */
 Model& Model::operator=(const Model& other)
 {
   if (this == &other) //self-assignment guard;
@@ -26,10 +32,17 @@ Model& Model::operator=(const Model& other)
   return *this;
 }
 
+
 Model::~Model()
 {
 }
 
+/** \brief Load a profile
+ *
+ * Load a profile and use loadProfile function from persistence
+ * \param gets a profile name
+ * * \returns boolean which will be true if the load was successfull
+ * */
 bool Model::load_my_profile(QString prof_name)
 {
     QVector<QString> loadProfData;
@@ -45,10 +58,15 @@ bool Model::load_my_profile(QString prof_name)
     return false;
 }
 
+/** \brief Create a profile
+ *
+ * Create a profile and use createProfile function from persistence
+ * \param gets a profile name
+ * * \returns boolean which will be true if the load was successfull
+ * */
 bool Model::create_my_profile(QString prof_name)
 {
     profile_->setName(prof_name);
-            //qDebug() << prof_name;
     QVector<QString> profData;
     profData.append(profile_->name());
     profData.append(QString::number(profile_->getLevel()));
@@ -60,12 +78,23 @@ bool Model::create_my_profile(QString prof_name)
     return p_->createProfile(prof_name, profData);
 }
 
+bool Model::scan_for_profile(QString &current_profile)
+{
+    return p_->scan_for_profile(current_profile);
+}
+
 void Model::load_existing_quiz()
 {
     //qDebug() << "Model::load_existing_quiz";
 
 }
 
+
+/** \brief List quizzes
+ *
+ * List the quizzes from your folder
+ * Use get_quiz_sets function from Persistence
+ * */
 void Model::list_quizzes()
 {
     qDebug() << "list quizzes func";

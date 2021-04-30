@@ -11,6 +11,14 @@
 #include "../model/quizitem.h"
 #include "profilecreationdialog.h"
 
+
+/** \brief This class functions as the main GUI of the program.
+ * 
+ * MainWidget is inherited from the <a href="https://doc.qt.io/qt-5/qwidget.html">QWidget<\a> class.
+ * Has a few spaces for different functions.
+ * 
+ * \see <a href="https://doc.qt.io/qt-5/qwidget.html">QWidget<\a>
+ */
 class MainWidget : public QWidget
 {
     Q_OBJECT
@@ -29,9 +37,12 @@ private:
     void display_profile_data();
     void remove_all_widgets(QLayout* layout);
 
+    /// Reference for the program's busines logic
     Model* model_; 
+    /// Reference for the persistence
     Persistence* p_;
     QVBoxLayout* VBoxLayout_;
+    /// Widget for displaying available quiz sets
     QListWidget* list_;
     profile_creation_dialog* dialog_;
     QString current_profile;

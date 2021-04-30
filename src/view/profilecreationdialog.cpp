@@ -1,6 +1,13 @@
 #include "profilecreationdialog.h"
 #include <QDebug>
 
+
+/** \brief This method creates a dialog for where the user can create a profile.
+ *
+ * This method arrenges the layout.
+ * Inits a button, a label, and two button for ok and cancel.
+ * If you created a new profile, then you can load it from the menubar.
+ * */
 profile_creation_dialog::profile_creation_dialog() :
     label_(new QLabel),
     gridLayout_(new QGridLayout)
@@ -45,10 +52,12 @@ profile_creation_dialog::profile_creation_dialog() :
         });
 }
 
+
 QString profile_creation_dialog::profile_name() const
 {
     return profile_name_;
 }
+
 
 void profile_creation_dialog::setProfile_name(const QString &profile_name)
 {

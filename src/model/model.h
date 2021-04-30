@@ -8,7 +8,8 @@
 #include "../profile/profile.h"
 
 
-
+/** \brief The business logic of the quiz game.
+ * */
 class Model
 {
 public:
@@ -19,6 +20,7 @@ public:
     ~Model();
     bool load_my_profile(QString prof_name);
     bool create_my_profile(QString prof_name);
+    bool scan_for_profile(QString &current_profile);
     void edit_active_quiz();
     static void load_existing_quiz();
     void list_quizzes();

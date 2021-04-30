@@ -19,13 +19,14 @@ MainWidget::MainWidget(Model *model, QWidget *parent) : QWidget(parent)
     dialog_ = new profile_creation_dialog();
 
 }
-
+/// \brief Creates a Menu Bar and fills it with actions.
 void MainWidget::create_menubar()
 {
         QMenuBar* menu_bar = new QMenuBar();
         this->setLayout(VBoxLayout_);
 
         bool profile_exists = scan_for_profile();
+        /// \arg If profile exists, then creates action to open it.
         if(profile_exists)
         {
             auto *load_profile_clicked = menu_bar->addAction("Load my Profile");
@@ -34,6 +35,7 @@ void MainWidget::create_menubar()
                 my_profile_clicked();
             });
         }
+        /// \arg If profile not exists, adds option to create a profile.
         else
         {
             auto *create_profile_clicked = menu_bar->addAction("Create my Profile");
@@ -49,13 +51,14 @@ void MainWidget::create_menubar()
             });
         }
 
-
+        /// \arg Adds action to edit the active quiz set.
         auto *edit_quiz_clicked = menu_bar->addAction("Edit a quiz");
         connect(edit_quiz_clicked, &QAction::triggered, this, [=]()
         {
             qDebug() << "Edit quiz clicked";
         });
 
+        /// \arg Adds action to load the existing quiz sets.
         auto *load_quiz_clicked = menu_bar->addAction("Load Existing Quizzes");
         connect(load_quiz_clicked, &QAction::triggered, this, [=]()
         {
@@ -69,6 +72,7 @@ void MainWidget::create_menubar()
         menu_bar->setFocus();
 }
 
+/// \brief Gets all the available quiz sets and displays them
 void MainWidget::list_quizzes_clicked()
 {
     list_->clear();
@@ -82,6 +86,7 @@ void MainWidget::list_quizzes_clicked()
     }
 }
 
+/// \brief If model can load profile, calls for profile displaying
 void MainWidget::my_profile_clicked()
 {
 
@@ -96,24 +101,13 @@ void MainWidget::my_profile_clicked()
     }
 }
 
+/// \brief Scans for existing profile files.
 bool MainWidget::scan_for_profile()
 {
-    bool profile_exists = false;
-    qDebug() << "szkenneles";
-    QDir dir(QDir::currentPath());
-    for(auto &entry : dir.entryList(QDir::Files))
-    {
-        if(entry.split('.').last()=="profile")
-        {
-
-            profile_exists = true;
-            current_profile = entry.split('.').first();
-        }
-    }
-
-    return profile_exists;
+    return model_->scan_for_profile(current_profile);
 }
 
+/// \brief Function that creates a new profile.
 void MainWidget::create_profile()
 {
     dialog_->setWindowTitle("Enter your name");
@@ -137,6 +131,7 @@ void MainWidget::create_profile()
 
 }
 
+/// \brief Function that displays the data in the profile file.
 void MainWidget::display_profile_data()
 {
     remove_all_widgets(VBoxLayout_);
@@ -157,6 +152,7 @@ void MainWidget::display_profile_data()
     widgets_.append(wrong);
 }
 
+/// \brief Conveniency function that deletes all widgets.
 void MainWidget::remove_all_widgets(QLayout *layout)
 {
     QWidget* w;
@@ -168,6 +164,7 @@ void MainWidget::remove_all_widgets(QLayout *layout)
     widgets_.clear();
 }
 
+/// \brief Getter of the current profile.
 QString MainWidget::getCurrent_profile() const
 {
     return current_profile;

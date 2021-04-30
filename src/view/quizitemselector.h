@@ -7,6 +7,14 @@
 #include <QPushButton>
 #include "../model/quizitem.h"
 
+
+
+/** \brief QuizItemSelector class is a widget to answer for a QuizItem by the user.
+ *
+ * This class is a child of the QWidget class. It shows all the information from one given QuizItem and let's the answer fro a question by select click on a button which cintains the wrong or the good answer.
+ * The click effects that the QuizItem gets it was a good answer choice or not.
+ * \see QuizItem
+ * */
 class quizitemselector : public QWidget
 {
     Q_OBJECT
