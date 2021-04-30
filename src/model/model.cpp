@@ -8,11 +8,6 @@ Model::Model(Persistence* p) : profile_(new Profile())
 
 }
 
-Model::Model(const Model &m) : profile_(new Profile())
-{
-    p_ = m.p_;
-}
-
 
 /** \brief operator '=' overload
  *

@@ -8,7 +8,8 @@
 #include "../profile/profile.h"
 
 
-
+/** \brief The business logic of the quiz game.
+ * */
 class Model
 {
 public:
