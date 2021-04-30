@@ -38,4 +38,5 @@ endif()
 
 target_link_libraries(IQuizt_Model 
     Qt5::Widgets
-    IQuizt_Persistence)
+    IQuizt_Persistence
+	IQuizt_Profile)

@@ -5,26 +5,36 @@
 #include <QDebug>
 #include <QVector>
 #include "../persistence/persistence.h"
+#include "../profile/profile.h"
 
 
-
+/** \brief The business logic of the quiz game.
+ * */
 class Model
 {
 public:
-    Model(Persistence* p);
+    explicit Model(Persistence* p);
+    Model(const Model &m) = delete; //copy constructor
+    Model& operator=(const Model &other); //overload
+
     ~Model();
-    QVector<QuizItem> active_quiz;
-    void open_my_profile();
+    bool load_my_profile(QString prof_name);
+    bool create_my_profile(QString prof_name);
+    bool scan_for_profile(QString &current_profile);
     void edit_active_quiz();
-    void load_existing_quiz();
+    static void load_existing_quiz();
     void list_quizzes();
 
 
-    QVector<NameAndPath> *getList_of_quizzes() const;
+    QVector<NameAndPath> getList_of_quizzes() const;
+
+    Profile *getProfile() const;
 
 private:
-    Persistence* p_;
-    QVector<NameAndPath> *list_of_quizzes;
+    Persistence* p_ = nullptr;
+    QVector<NameAndPath> list_of_quizzes;
+    Profile* profile_;
+    QVector<QuizItem> active_quiz;
 };
 
 #endif // MODEL_H

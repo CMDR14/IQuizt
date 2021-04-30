@@ -22,12 +22,14 @@ if (WIN32)
     mainwidget.cpp
     quizitemeditor.cpp
     quizitemselector.cpp
+    profilecreationdialog.cpp
 )
 elseif(UNIX)
     add_library(IQuizt_View
     mainwidget.cpp
     quizitemeditor.cpp
     quizitemselector.cpp
+    profilecreationdialog.cpp
 )
 endif()
 

@@ -25,6 +25,7 @@ find_package(Qt5Widgets REQUIRED)
 add_subdirectory(model)
 add_subdirectory(view)
 add_subdirectory(persistence)
+add_subdirectory(profile)
 
 if (WIN32)
     add_executable(IQuizt WIN32

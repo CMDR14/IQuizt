@@ -3,7 +3,12 @@
 
 #include <QTextStream>
 
-
+/** \brief This class stores one question and it's answers for a quiz.  
+ * 
+ * This is one part of the quiz storing system. It contains a question, the right answer, and three wrong answers.  
+ * Has methods to get and set these members.  
+ * This also stores some statistics and member functions for these.  
+ * */
 class QuizItem
 {
     friend class QuizItemEditorTest;
@@ -21,11 +26,11 @@ public:
 
     void newTry(bool correct);
 
-    void setQuestion(QString question);
-    void setRightAnswer(QString right_answer);
-    void setWrongAnswer1(QString wrong_answer_1);
-    void setWrongAnswer2(QString wrong_answer_2);
-    void setWrongAnswer3(QString wrong_answer_3);
+    void setQuestion(QString const &question);
+    void setRightAnswer(QString const &right_answer);
+    void setWrongAnswer1(QString const &wrong_answer_1);
+    void setWrongAnswer2(QString const &wrong_answer_2);
+    void setWrongAnswer3(QString const &wrong_answer_3);
     void setTrys(int trys);
     void setCorrects(int corrects);
 
@@ -33,7 +38,10 @@ public:
     friend QTextStream& operator>>(QTextStream& is, QuizItem& q);
 
 private:
+    ///This array stores all the string parts of the class, like the question and the answers.  
     QString quiz_item_[5];
+
+    ///This array stores the statistic numbers, like count of tries and count of correct answers.  
     int stat_[2];
 
 };

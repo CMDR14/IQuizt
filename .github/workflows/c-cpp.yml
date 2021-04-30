@@ -1,11 +1,12 @@
 name: C/C++ CI
 
 on: [ push , pull_request ]
-    
 
-jobs:
+ 
+jobs:  
+        
   build:
-
+    needs: [test-persistence,test-quizitemeditor,test-quizitem]
     runs-on: ubuntu-latest
 
     steps:
@@ -13,7 +14,7 @@ jobs:
     - name: Install dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install -y build-essential cmake qt5-default
+        sudo apt-get install -y build-essential cmake qt5-default cppcheck
     - name: chmod
       run: chmod +x ubuntu_build.sh
     - name: ubuntu
@@ -33,16 +34,9 @@ jobs:
     - name: Install dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install -y build-essential cmake qt5-default
-    - name: create build folder, build test and run it
-      run : |
-        cd ..
-        mkdir build_test
-        cd build_test
-        cmake ../IQuizt
-        make PersistenceTest
-        cd ./tests/PersistenceTest/
-        ctest
+        sudo apt-get install -y build-essential cmake qt5-default cppcheck
+    - name: build test and run it
+      run : bash ./test_build.sh PersistenceTest -ctest
         
   test-quizitemeditor:
     runs-on: ubuntu-latest
@@ -52,17 +46,9 @@ jobs:
     - name: Install dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install -y build-essential cmake qt5-default
-    - name: create build folder, build test and run it
-      run : |
-        cd ..
-        mkdir build_test
-        cd build_test
-        cmake ../IQuizt
-        make QuizItemEditorTest
-#        cd ./tests/quizitemedtiortest/
-#        ctest
-#        Couldn't test because it needs a display. 
+        sudo apt-get install -y build-essential cmake qt5-default cppcheck
+    - name: build test and run it
+      run : bash ./test_build.sh quizitemedtiortest
  
   test-quizitem:
     runs-on: ubuntu-latest
@@ -72,15 +58,40 @@ jobs:
     - name: Install dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install -y build-essential cmake qt5-default
-    - name: create build folder, build test and run it
-      run : |
-        cd ..
-        mkdir build_test
-        cd build_test
-        cmake ../IQuizt
-        make QuizItemTest
-        cd ./tests/QuizItemTest/
-        ctest
+        sudo apt-get install -y build-essential cmake qt5-default cppcheck
+    - name: build test and run it
+      run : bash ./test_build.sh QuizItemTest -ctest
+
+  create-documentation:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install dependecies
+      run: |
+        sudo apt-get update
+        sudo apt-get install doxygen
+    - name: Generate with Doxygen
+      run: doxygen Doxyfile
+    - name: Upload artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: IQuizt Documentation
+        path: docs/*
+
+  cppcheck:
+    needs: build
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v2
+    - name: cppcheck
+      uses:  deep5050/cppcheck-action@main
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN}}
+        enable: all
+        other_options: --suppress=missingIncludeSystem --suppress=unusedFunction --suppress=preprocessorErrorDirective --suppress=unmatchedSuppression:* --suppress=missingInclude
+    - name: show_report
+      run: bash ./cppcheck_action_result.sh cppcheck_report.txt
         
         

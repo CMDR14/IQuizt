@@ -10,6 +10,12 @@ QuizItemEditor::QuizItemEditor(QuizItem *quiz_item, QWidget *parent)
     init_connects();
 }
 
+/** \brief This method sets up the layout of the widget.  
+ * 
+ * Inits all the widgets, which are needed to display the `quiz_item_`.  
+ * Then fills them with the informations.  
+ * Then arenges them in the layout.  
+ * */
 void QuizItemEditor::init_layout()
 {
     grid_layout_ = new QGridLayout(this);
@@ -56,6 +62,14 @@ void QuizItemEditor::init_layout()
     setLayout(grid_layout_);
 }
 
+
+/** \brief Connects the user input events with the needed slots.  
+ * 
+ * The line edits are signaling when their content is edited.  
+ * The spin boxes are also signaling when their value is changed.  
+ * Then the editor works with these informations.  
+ * The save button signals when it is clicked, then the editor saves the new contents.  
+ * */
 void QuizItemEditor::init_connects()
 {
     connect(question_line_, SIGNAL(textEdited(const QString&)), this, SLOT(on_textEdited(const QString&)));
@@ -70,6 +84,11 @@ void QuizItemEditor::init_connects()
     connect(save_button_, SIGNAL(clicked()), this, SLOT(on_save()));
 }
 
+/** \brief When triggered, finds which edit is the sender and saves the new string according.  
+ * 
+ * Checks if the sender is any of the known line edits and saves the string in the right buffer string.  
+ * The save button is not enabled in default. It gets enabled when one of the values change.  
+ * */
 void QuizItemEditor::on_textEdited(const QString &text)
 {
     //qDebug() << "Text edited\n";
@@ -90,6 +109,11 @@ void QuizItemEditor::on_textEdited(const QString &text)
 
 }
 
+/** \brief When triggered, finds which spin box is the sender and saves the new value according.  
+ * 
+ * Checks if the sender is any of the known spin boxes and saves the value in the right buffer integer.  
+ * The save button is not enabled in default. It gets enabled when one of the values change.  
+ * */
 void QuizItemEditor::on_valueChanged(int value)
 {
     save_button_->setEnabled(true);
@@ -100,6 +124,11 @@ void QuizItemEditor::on_valueChanged(int value)
         new_int_[1] = value;
 }
 
+/** \brief When triggered, saves the values from the buffer.
+ * 
+ * Saves all the values from the right buffers to the `quiz_item_`.
+ * Sets the save button unavailable to press after save.
+ * */
 void QuizItemEditor::on_save()
 {
     //qDebug() << "Saved\n";
