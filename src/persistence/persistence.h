@@ -24,7 +24,7 @@ class Persistence
 public:
     explicit Persistence() {}
 
-    static bool get_quiz_sets(QVector<NameAndPath>& quiz_sets);
+    static bool get_quiz_sets(QVector<NameAndPath>& quiz_sets, QString path);
 
     static bool saveQuiz(const NameAndPath &NamePath, const QVector<QuizItem> &SaveQuizData);
     static bool loadQuiz(NameAndPath &NamePath, QVector<QuizItem> &loadQuizData);

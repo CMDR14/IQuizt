@@ -29,8 +29,11 @@ public:
     QVector<NameAndPath> getList_of_quizzes() const;
 
     Profile *getProfile() const;
+    QString getDirPath();
+    void setDirPath(const QString& path);
 
 private:
+    QString dir_path_;
     Persistence* p_ = nullptr;
     QVector<NameAndPath> list_of_quizzes;
     Profile* profile_;

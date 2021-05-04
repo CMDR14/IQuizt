@@ -77,6 +77,7 @@ void MainWidget::list_quizzes_clicked()
 {
     list_->clear();
     list_->setVisible(true);
+    create_file_dialog();
     model_->list_quizzes();
     QVector<NameAndPath> tmp = model_->getList_of_quizzes();
     for(int i = 0; i < tmp.size(); ++i)
@@ -84,6 +85,8 @@ void MainWidget::list_quizzes_clicked()
 
         list_->addItem(tmp.at(i).name);
     }
+
+    qDebug() << "MainWidget::list_quizzes_clicked.";
 }
 
 /// \brief If model can load profile, calls for profile displaying
@@ -162,6 +165,23 @@ void MainWidget::remove_all_widgets(QLayout *layout)
        delete w;
     }
     widgets_.clear();
+}
+
+/// \brief create file dialog where you can select the .quiz files and it gets the folder path
+void MainWidget::create_file_dialog()
+{
+
+     QFileDialog dialog;
+     dialog.setNameFilter("quiz files (*.quiz)");
+     dialog.exec();
+
+
+     QDir d =  dialog.directory();
+     QString absolute = d.absolutePath();
+
+     qDebug() << "Utvonal: " << absolute;
+     model_->setDirPath(absolute);
+
 }
 
 /// \brief Getter of the current profile.

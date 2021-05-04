@@ -100,7 +100,7 @@ void Model::list_quizzes()
     qDebug() << "list quizzes func";
     list_of_quizzes.clear();
     qDebug() << "list quizzes func2";
-    if(!(p_->get_quiz_sets(list_of_quizzes)))
+    if(!(p_->get_quiz_sets(list_of_quizzes, dir_path_)))
     {
         qDebug() << "Quiz loading unsuccesful!";
         return;
@@ -118,5 +118,16 @@ Profile *Model::getProfile() const
 {
     return profile_;
 }
+
+QString Model::getDirPath()
+{
+    return dir_path_;
+}
+
+void Model::setDirPath(const QString& path)
+{
+    dir_path_ = path;
+}
+
 
 

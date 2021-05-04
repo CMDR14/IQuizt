@@ -6,7 +6,6 @@
 #include <QTextStream>
 #include <QDebug>
 
-
 /** \brief Lists all the available quiz sets in a folder.
  * 
  * Opens the directorey (now the current directory).
@@ -18,8 +17,14 @@
  *      It is a vector of NameAndPath type.
  * \returns `true` if everithing works fine.
  * */
-bool Persistence::get_quiz_sets(QVector<NameAndPath>& quiz_sets) {
-    QDir dir(QDir::currentPath());
+bool Persistence::get_quiz_sets(QVector<NameAndPath>& quiz_sets, QString path) {
+
+
+
+    //QDir dir(QDir::currentPath());
+    //qDebug() << "Persistence::get_quiz_sets path: " << QDir::currentPath();
+    QDir dir(path);
+    qDebug() << "Persistence::get_quiz_sets path: " << path;
     for (auto &entry : dir.entryList(QDir::Files)) {
         if(entry.split('.').last()!="quiz")
             continue;
@@ -220,3 +225,5 @@ bool Persistence::scan_for_profile(QString &current_profile)
 
     return profile_exists;
 }
+
+
