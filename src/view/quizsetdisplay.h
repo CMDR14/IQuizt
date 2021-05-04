@@ -17,7 +17,7 @@ class QuizSetDisplay : public QWidget
 {
     Q_OBJECT
 public:
-    explicit QuizSetDisplay(QString name, QVector<QuizItem*> *items, bool is_selector = true, QWidget *parent = nullptr);
+    explicit QuizSetDisplay(const QString& name, QVector<QuizItem*> *items, bool is_selector = true, QWidget *parent = nullptr);
 
 private:
     QString name_;

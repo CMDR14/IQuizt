@@ -1,7 +1,7 @@
 #include "quizsetdisplay.h"
 #include <QDebug>
 
-QuizSetDisplay::QuizSetDisplay(QString name, QVector<QuizItem*> *items, bool is_selector, QWidget *parent)
+QuizSetDisplay::QuizSetDisplay(const QString& name, QVector<QuizItem*> *items, bool is_selector, QWidget *parent)
     : QWidget(parent), name_(name), items_(items), is_selector_(is_selector)
 {
     init_layout();

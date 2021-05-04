@@ -31,7 +31,7 @@ public:
     Profile *getProfile() const;
 
     void set_active_set_name_and_path(NameAndPath nap){quiz_set_name_and_path_=nap;}
-    NameAndPath get_active_set_name_and_path(){return quiz_set_name_and_path_;}
+    NameAndPath get_active_set_name_and_path() const {return quiz_set_name_and_path_;}
 
     QVector<QuizItem*>* get_active_quiz_set_() {return quiz_set_;}
 

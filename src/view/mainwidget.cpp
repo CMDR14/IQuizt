@@ -77,6 +77,24 @@ void MainWidget::create_menubar()
 
         });
 
+        /// \arg Adds action to fill the active quiz set.
+        auto *fill_quiz_clicked = menu_bar->addAction("Fill a quiz");
+        connect(fill_quiz_clicked, &QAction::triggered, this, [=]()
+        {
+            qDebug() << "Fill quiz clicked";
+            if(model_->get_active_quiz_set_()==nullptr){
+                QMessageBox msg;
+                msg.setText("No quiz selected!");
+                msg.exec();
+
+            }else{
+                QuizSetDisplay* qst = new QuizSetDisplay(model_->get_active_set_name_and_path().name, model_->get_active_quiz_set_());
+                qst->show();
+
+            }
+
+        });
+
         /// \arg Adds action to load the existing quiz sets.
         auto *load_quiz_clicked = menu_bar->addAction("Load Existing Quizzes");
         connect(load_quiz_clicked, &QAction::triggered, this, [=]()

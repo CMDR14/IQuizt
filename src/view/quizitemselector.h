@@ -20,10 +20,10 @@ class quizitemselector : public QWidget
     Q_OBJECT
 public:
     explicit quizitemselector(QuizItem* quiz_item, QWidget *parent = nullptr);
-
+    bool is_answered() {return answered_;}
 
 private:
-
+    bool answered_;
    //components
    QuizItem* quiz_item_;
    QGridLayout* grid_layout_;
