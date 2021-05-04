@@ -30,6 +30,8 @@ private:
     QLabel* result_label_;
     QVector<quizitemselector*> selectors_;
     QVector<QuizItemEditor*> editors_;
+    QVector<QPushButton*> remove_item_btns_;
+    QPushButton *add_item_btn_;
 
     void init_layout();
     void init_selector_layout();
@@ -37,6 +39,8 @@ private:
 
 public slots:
     void quiz_answered();
+    void add_new_item();
+    void rem_item();
 };
 
 #endif // QUIZSETDISPLAY_H

@@ -134,12 +134,19 @@ void QuizItemEditor::on_save()
     //qDebug() << "Saved\n";
     save_button_->setEnabled(false);
 
-    quiz_item_->setQuestion(new_str_[0]);
+    if(new_str_[0]!="" && quiz_item_->getQuestion()!=new_str_[0])
+        quiz_item_->setQuestion(new_str_[0]);
+    if(new_str_[1]!="" && quiz_item_->getRightAnswer()!=new_str_[1])
     quiz_item_->setRightAnswer(new_str_[1]);
+    if(new_str_[2]!="" && quiz_item_->getWrongAnswer1()!=new_str_[2])
     quiz_item_->setWrongAnswer1(new_str_[2]);
+    if(new_str_[3]!="" && quiz_item_->getWrongAnswer2()!=new_str_[3])
     quiz_item_->setWrongAnswer2(new_str_[3]);
+    if(new_str_[4]!="" && quiz_item_->getWrongAnswer3()!=new_str_[4])
     quiz_item_->setWrongAnswer3(new_str_[4]);
+    if(new_int_[0]!=0 && quiz_item_->getTrys()!=new_int_[0])
     quiz_item_->setTrys(new_int_[0]);
+    if(new_int_[1]!=0 && quiz_item_->getCorrects()!=new_int_[1])
     quiz_item_->setCorrects(new_int_[1]);
 
     //qDebug() << quiz_item_->getQuestion().c_str();

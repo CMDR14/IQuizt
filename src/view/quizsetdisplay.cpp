@@ -9,6 +9,8 @@ QuizSetDisplay::QuizSetDisplay(const QString& name, QVector<QuizItem*> *items, b
 
 void QuizSetDisplay::init_layout()
 {
+
+
     scroll_area_ = new QScrollArea(this);
     scroll_area_->setWidgetResizable(true);
     new QVBoxLayout(this);
@@ -34,6 +36,10 @@ void QuizSetDisplay::init_layout()
         quiz_answered();
     }else{
         init_editor_layout();
+
+        add_item_btn_ = new QPushButton("Add",this);
+        layout_->addWidget(add_item_btn_);
+        connect(add_item_btn_, &QPushButton::clicked, this, &QuizSetDisplay::add_new_item);
     }
 }
 
@@ -59,6 +65,11 @@ void QuizSetDisplay::init_editor_layout()
         qs->show();
 
         editors_.append(qs);
+
+        QPushButton* rem_btn_ = new QPushButton("Remove",this);
+        layout_->addWidget(rem_btn_);
+        connect(rem_btn_, &QPushButton::clicked, this, &QuizSetDisplay::rem_item);
+        remove_item_btns_.append(rem_btn_);
     }
 }
 
@@ -73,5 +84,41 @@ void QuizSetDisplay::quiz_answered()
         }
     }
     result_label_->setText("You filled: " + QString::number(answered) + "/" + QString::number(all)
-                       + "\nYou got: " + QString::number(good) + "/" + QString::number(all));
+                           + "\nYou got: " + QString::number(good) + "/" + QString::number(all));
+}
+
+void QuizSetDisplay::add_new_item()
+{
+    items_->append(new QuizItem());
+    layout_->removeWidget(add_item_btn_);
+    QuizItemEditor* qs = new QuizItemEditor(items_->last());
+    layout_->addWidget(qs);
+    qs->show();
+
+    editors_.append(qs);
+
+    QPushButton* rem_btn_ = new QPushButton("Remove",this);
+    layout_->addWidget(rem_btn_);
+    connect(rem_btn_, &QPushButton::clicked, this, &QuizSetDisplay::rem_item);
+    remove_item_btns_.append(rem_btn_);
+
+    layout_->addWidget(add_item_btn_);
+}
+
+void QuizSetDisplay::rem_item()
+{
+    int ind;
+    for(int i=0; i<remove_item_btns_.count(); i++){
+        if(sender()==remove_item_btns_[i]){
+            ind = i;
+        }
+    }
+    layout_->removeWidget(remove_item_btns_[ind]);
+    layout_->removeWidget(editors_[ind]);
+    editors_[ind]->deleteLater();
+    editors_.remove(ind);
+    remove_item_btns_[ind]->deleteLater();
+    remove_item_btns_.remove(ind);
+    delete items_->at(ind);
+    items_->remove(ind);
 }
