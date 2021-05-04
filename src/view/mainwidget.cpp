@@ -11,19 +11,8 @@ MainWidget::MainWidget(Model *model, QWidget *parent) : QWidget(parent)
     model_ = model;
     VBoxLayout_ = new QVBoxLayout();
     create_menubar();
-    list_ = new QListWidget();
-    list_->setVisible(false);
-    connect(list_, &QListWidget::itemSelectionChanged, this, [=](){
-        if(list_->selectedItems().count()>0){
-            int ind = list_->selectedItems().at(0)->text().split(" ").at(0).toInt();
-            model_->set_active_set_name_and_path(model_->getList_of_quizzes().at(ind-1));
-
-            model_->load_existing_quiz(model_->getList_of_quizzes().at(ind-1));
-        }
-    });
-    VBoxLayout_->addWidget(list_);
-    widgets_.append(list_);
-    this->setFixedSize(600,600);
+    //this->setFixedSize(600,600);
+    setMinimumSize(600,600);
     dialog_ = new profile_creation_dialog();
 
 }
@@ -70,7 +59,10 @@ void MainWidget::create_menubar()
                 msg.exec();
 
             }else{
+                remove_all_widgets(VBoxLayout_);
                 QuizSetDisplay* qst = new QuizSetDisplay(model_->get_active_set_name_and_path().name, model_->get_active_quiz_set_(), false);
+                VBoxLayout_->addWidget(qst);
+                widgets_.append(qst);
                 qst->show();
 
             }
@@ -88,7 +80,10 @@ void MainWidget::create_menubar()
                 msg.exec();
 
             }else{
+                remove_all_widgets(VBoxLayout_);
                 QuizSetDisplay* qst = new QuizSetDisplay(model_->get_active_set_name_and_path().name, model_->get_active_quiz_set_());
+                VBoxLayout_->addWidget(qst);
+                widgets_.append(qst);
                 qst->show();
 
             }
@@ -112,6 +107,19 @@ void MainWidget::create_menubar()
 /// \brief Gets all the available quiz sets and displays them
 void MainWidget::list_quizzes_clicked()
 {
+    remove_all_widgets(VBoxLayout_);
+    list_ = new QListWidget();
+    list_->setVisible(false);
+    connect(list_, &QListWidget::itemSelectionChanged, this, [=](){
+        if(list_->selectedItems().count()>0){
+            int ind = list_->selectedItems().at(0)->text().split(" ").at(0).toInt();
+            model_->set_active_set_name_and_path(model_->getList_of_quizzes().at(ind-1));
+
+            model_->load_existing_quiz(model_->getList_of_quizzes().at(ind-1));
+        }
+    });
+    VBoxLayout_->addWidget(list_);
+    widgets_.append(list_);
     list_->clearSelection();
     list_->clear();
     list_->setVisible(true);
