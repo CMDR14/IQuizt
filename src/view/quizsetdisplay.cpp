@@ -1,12 +1,25 @@
 #include "quizsetdisplay.h"
 #include <QDebug>
 
+/** \brief Constructs a widget to display a quiz set.
+ *
+ *  Can be used to as an editor or a quiz filler.
+ *
+ *  \param name is the name of the given QuizSet.
+ *  \param items is the vector that contains the QuizItems of the set. It's a pointer because it changes the set.
+ *  \param is_selector is used to chose if its a filler or editor of the set. Default is filler.
+ *  \param parent is the tointer to its parent.
+ *  */
 QuizSetDisplay::QuizSetDisplay(const QString& name, QVector<QuizItem*> *items, bool is_selector, QWidget *parent)
     : QWidget(parent), name_(name), items_(items), is_selector_(is_selector)
 {
     init_layout();
 }
 
+/** \brief Sets up the layout of the widget.
+ *
+ *  The base is the same for the editor and the filler.
+ *  */
 void QuizSetDisplay::init_layout()
 {
 
@@ -27,7 +40,7 @@ void QuizSetDisplay::init_layout()
     name_label_->setText(name_);
     layout_->addWidget(name_label_);
 
-
+    ///The lower part of the wiget is layed according to its functionality.
     if(is_selector_){
         init_selector_layout();
 
@@ -73,6 +86,7 @@ void QuizSetDisplay::init_editor_layout()
     }
 }
 
+/// \brief If a quiz is answered the ui refreshes the results.
 void QuizSetDisplay::quiz_answered()
 {
     int all=items_->count(), answered=0, good=0;
@@ -87,6 +101,7 @@ void QuizSetDisplay::quiz_answered()
                            + "\nYou got: " + QString::number(good) + "/" + QString::number(all));
 }
 
+/// \brief Adds a new item to the collection and refreshes the ui according.
 void QuizSetDisplay::add_new_item()
 {
     items_->append(new QuizItem());
@@ -105,6 +120,7 @@ void QuizSetDisplay::add_new_item()
     layout_->addWidget(add_item_btn_);
 }
 
+/// \brief Removes a item from the collection and refreshes the ui according.
 void QuizSetDisplay::rem_item()
 {
     int ind;

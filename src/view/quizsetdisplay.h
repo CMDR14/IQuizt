@@ -11,7 +11,8 @@
 
 /** \brief This class is used to display a quiz set
  *
- *  With the cunstructor, one can choose if its a selector or editor.
+ *  With the constructor, one can choose if its a selector or editor.
+ *  It will appear and behave accordingly.
  *  */
 class QuizSetDisplay : public QWidget
 {
