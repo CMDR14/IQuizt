@@ -13,6 +13,14 @@ MainWidget::MainWidget(Model *model, QWidget *parent) : QWidget(parent)
     create_menubar();
     list_ = new QListWidget();
     list_->setVisible(false);
+    connect(list_, &QListWidget::itemSelectionChanged, this, [=](){
+        if(list_->selectedItems().count()>0){
+            int ind = list_->selectedItems().at(0)->text().split(" ").at(0).toInt();
+            model_->set_active_set_name_and_path(model_->getList_of_quizzes().at(ind-1));
+
+            model_->load_existing_quiz(model_->getList_of_quizzes().at(ind-1));
+        }
+    });
     VBoxLayout_->addWidget(list_);
     widgets_.append(list_);
     this->setFixedSize(600,600);
@@ -56,6 +64,17 @@ void MainWidget::create_menubar()
         connect(edit_quiz_clicked, &QAction::triggered, this, [=]()
         {
             qDebug() << "Edit quiz clicked";
+            if(model_->get_active_quiz_set_()==nullptr){
+                QMessageBox msg;
+                msg.setText("No quiz selected!");
+                msg.exec();
+
+            }else{
+                QuizSetDisplay* qst = new QuizSetDisplay(model_->get_active_set_name_and_path().name, model_->get_active_quiz_set_(), false);
+                qst->show();
+
+            }
+
         });
 
         /// \arg Adds action to load the existing quiz sets.
@@ -75,14 +94,14 @@ void MainWidget::create_menubar()
 /// \brief Gets all the available quiz sets and displays them
 void MainWidget::list_quizzes_clicked()
 {
+    list_->clearSelection();
     list_->clear();
     list_->setVisible(true);
     model_->list_quizzes();
     QVector<NameAndPath> tmp = model_->getList_of_quizzes();
     for(int i = 0; i < tmp.size(); ++i)
     {
-
-        list_->addItem(tmp.at(i).name);
+        list_->addItem(QString::number(i+1) + " : " + tmp.at(i).name + "\t" + tmp.at(i).path);
     }
 }
 

@@ -22,7 +22,7 @@ public:
     bool create_my_profile(QString prof_name);
     bool scan_for_profile(QString &current_profile);
     void edit_active_quiz();
-    static void load_existing_quiz();
+    void load_existing_quiz(NameAndPath nap);
     void list_quizzes();
 
 
@@ -30,11 +30,17 @@ public:
 
     Profile *getProfile() const;
 
+    void set_active_set_name_and_path(NameAndPath nap){quiz_set_name_and_path_=nap;}
+    NameAndPath get_active_set_name_and_path(){return quiz_set_name_and_path_;}
+
+    QVector<QuizItem*>* get_active_quiz_set_() {return quiz_set_;}
+
 private:
     Persistence* p_ = nullptr;
     QVector<NameAndPath> list_of_quizzes;
     Profile* profile_;
-    QVector<QuizItem> active_quiz;
+    NameAndPath quiz_set_name_and_path_;
+    QVector<QuizItem*> *quiz_set_;
 };
 
 #endif // MODEL_H

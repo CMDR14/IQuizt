@@ -23,6 +23,7 @@ if (WIN32)
     quizitemeditor.cpp
     quizitemselector.cpp
     profilecreationdialog.cpp
+    quizsetdisplay.cpp
 )
 elseif(UNIX)
     add_library(IQuizt_View
@@ -30,6 +31,7 @@ elseif(UNIX)
     quizitemeditor.cpp
     quizitemselector.cpp
     profilecreationdialog.cpp
+    quizsetdisplay.cpp
 )
 endif()
 

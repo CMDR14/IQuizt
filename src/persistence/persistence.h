@@ -27,7 +27,7 @@ public:
     static bool get_quiz_sets(QVector<NameAndPath>& quiz_sets);
 
     static bool saveQuiz(const NameAndPath &NamePath, const QVector<QuizItem> &SaveQuizData);
-    static bool loadQuiz(NameAndPath &NamePath, QVector<QuizItem> &loadQuizData);
+    static bool loadQuiz(NameAndPath &NamePath, QVector<QuizItem*>* &loadQuizData);
 
     static bool saveProfile(QVector<QString> &SaveProfileData, QString const &profileName);
     static bool loadProfile(QVector<QString> &LoadProfileData, QString const &profileName);

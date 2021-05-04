@@ -123,14 +123,23 @@ QTextStream& operator<<(QTextStream& os, const QuizItem& q)
  * */
 QTextStream& operator>>(QTextStream& is, QuizItem& q)
 {
-    QString question, right, wrong1, wrong2, wrong3;
+    QString question, right, wrong1, wrong2, wrong3, line;
     int trys, corrects;
-    is >> question
+    /*is >> question
        >> right
        >> wrong1
        >> wrong2
        >> wrong3
-       >> trys >> corrects;
+       >> trys >> corrects;*/
+    question = is.readLine();
+    right = is.readLine();
+    wrong1 = is.readLine();
+    wrong2 = is.readLine();
+    wrong3 = is.readLine();
+    line = is.readLine();
+    trys = line.split(" ").at(0).toInt();
+    corrects = line.split(" ").at(1).toInt();
+
     q.setQuestion(question);
     q.setRightAnswer(right);
     q.setWrongAnswer1(wrong1);
