@@ -4,7 +4,7 @@
 #include <QDebug>
 
 quizitemselector::quizitemselector(QuizItem *quiz_item, QWidget *parent)
-    : QWidget(parent), answered_(false)
+    : QWidget(parent), answered_(0)
 {
 
     qDebug() << "quizitemselector constr";
@@ -123,13 +123,15 @@ void quizitemselector::init_connects()
  * */
 void quizitemselector::on_answer_button_clicked()
 {
-    answered_ = true;
     if(sender() == right_button_){
+        answered_ = 1;
         quiz_item_->newTry(true);
     }else{
+        answered_ = 2;
         quiz_item_->newTry(false);
     }
     setEnabled(false);
+    emit quiz_answered();
 }
 
 

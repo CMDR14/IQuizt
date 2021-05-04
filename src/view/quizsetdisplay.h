@@ -27,12 +27,16 @@ private:
     QScrollArea *scroll_area_;
     QVBoxLayout *layout_;
     QLabel* name_label_;
+    QLabel* result_label_;
     QVector<quizitemselector*> selectors_;
     QVector<QuizItemEditor*> editors_;
 
     void init_layout();
     void init_selector_layout();
     void init_editor_layout();
+
+public slots:
+    void quiz_answered();
 };
 
 #endif // QUIZSETDISPLAY_H

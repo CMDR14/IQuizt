@@ -28,6 +28,10 @@ void QuizSetDisplay::init_layout()
 
     if(is_selector_){
         init_selector_layout();
+
+        result_label_ = new QLabel(this);
+        layout_->addWidget(result_label_);
+        quiz_answered();
     }else{
         init_editor_layout();
     }
@@ -39,7 +43,7 @@ void QuizSetDisplay::init_selector_layout()
         quizitemselector* qs = new quizitemselector((*items_)[i], this);
         layout_->addWidget(qs);
         qs->show();
-
+        connect(qs, &quizitemselector::quiz_answered, this, &QuizSetDisplay::quiz_answered);
         selectors_.append(qs);
     }
 }
@@ -56,4 +60,18 @@ void QuizSetDisplay::init_editor_layout()
 
         editors_.append(qs);
     }
+}
+
+void QuizSetDisplay::quiz_answered()
+{
+    int all=items_->count(), answered=0, good=0;
+    for (int i=0; i<items_->count(); ++i) {
+        switch(selectors_[i]->is_answered()){
+        case  1 : good++;
+        case  2 : answered++;
+        default : break;
+        }
+    }
+    result_label_->setText("You filled: " + QString::number(answered) + "/" + QString::number(all)
+                       + "\nYou got: " + QString::number(good) + "/" + QString::number(all));
 }
