@@ -35,7 +35,7 @@ void PersistenceTest::test_get_quiz_sets_for_null_file()
 {
     QVector<NameAndPath> sets;
 
-    persistence->get_quiz_sets(sets);
+    persistence->get_quiz_sets(sets, QDir::currentPath());
 
     QCOMPARE(sets.count(),0);
 }
@@ -53,7 +53,7 @@ void PersistenceTest::test_get_quiz_sets_for_existing_file()
     file.close();
 
     QVector<NameAndPath> sets;
-    persistence->get_quiz_sets(sets);
+    persistence->get_quiz_sets(sets, QDir::currentPath());
 
     QCOMPARE(sets.count(),1);
     QCOMPARE(sets.at(0).name, "Test line writed");
@@ -77,7 +77,7 @@ void PersistenceTest::test_wrong_file_name()
     file.close();
 
     QVector<NameAndPath> sets;
-    persistence->get_quiz_sets(sets);
+    persistence->get_quiz_sets(sets, QDir::currentPath());
 
 
     QCOMPARE(sets.count(),0);
