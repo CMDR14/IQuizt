@@ -12,7 +12,7 @@ MainWidget::MainWidget(Model *model, QWidget *parent) : QWidget(parent)
     VBoxLayout_ = new QVBoxLayout();
     create_menubar();
     //this->setFixedSize(600,600);
-    setMinimumSize(600,600);
+    setMinimumSize(400,500);
     dialog_ = new profile_creation_dialog();
 
     setWindowIcon(QIcon("IQuizt-icon-144x144.png"));
@@ -98,6 +98,13 @@ void MainWidget::create_menubar()
             list_quizzes_clicked();
         });
 
+        /// \arg Adds action to set quiz directory.
+        auto *set_quiz_dir_clicked = menu_bar->addAction("Set Quiz Directory");
+        connect(set_quiz_dir_clicked, &QAction::triggered, this, [=]()
+        {
+            create_file_dialog();
+        });
+
         menu_bar->setNativeMenuBar(false);
         menu_bar->show();
         this->layout()->setMenuBar(menu_bar);
@@ -124,7 +131,6 @@ void MainWidget::list_quizzes_clicked()
     list_->clearSelection();
     list_->clear();
     list_->setVisible(true);
-    create_file_dialog();
     model_->list_quizzes();
     QVector<NameAndPath> tmp = model_->getList_of_quizzes();
     for(int i = 0; i < tmp.size(); ++i)
@@ -141,7 +147,7 @@ void MainWidget::my_profile_clicked()
 
     if(model_->load_my_profile(current_profile))
     {
-        QMessageBox::information(this, "IQuizt", "Profile loaded!");
+        //QMessageBox::information(this, "IQuizt", "Profile loaded!");
         display_profile_data();
     }
     else

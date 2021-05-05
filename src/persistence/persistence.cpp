@@ -19,7 +19,7 @@
  * */
 bool Persistence::get_quiz_sets(QVector<NameAndPath>& quiz_sets, QString path) {
 
-
+    bool success = true;
 
     //QDir dir(QDir::currentPath());
     //qDebug() << "Persistence::get_quiz_sets path: " << QDir::currentPath();
@@ -30,11 +30,11 @@ bool Persistence::get_quiz_sets(QVector<NameAndPath>& quiz_sets, QString path) {
             continue;
 
         NameAndPath current;
-        current.path = entry;
+        current.path = path+"/"+entry;
 
-        QFile file(entry);
+        QFile file(path+"/"+entry);
         if(!file.open(QFile::ReadOnly))
-                return false;
+                success = false;
 
         QTextStream stream(&file);
         current.name = stream.readLine();
@@ -42,7 +42,7 @@ bool Persistence::get_quiz_sets(QVector<NameAndPath>& quiz_sets, QString path) {
         file.close();
         quiz_sets.append(current);
     }
-    return true;
+    return success;
 }
 
 /** \brief Saves a quiz set to a file.
