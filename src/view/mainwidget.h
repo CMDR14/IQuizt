@@ -10,6 +10,7 @@
 #include "quizitemselector.h"
 #include "../model/quizitem.h"
 #include "profilecreationdialog.h"
+#include "quizsetdisplay.h"
 
 
 /** \brief This class functions as the main GUI of the program.

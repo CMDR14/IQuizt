@@ -20,10 +20,10 @@ class quizitemselector : public QWidget
     Q_OBJECT
 public:
     explicit quizitemselector(QuizItem* quiz_item, QWidget *parent = nullptr);
-
+    int is_answered() {return answered_;}
 
 private:
-
+    int answered_;
    //components
    QuizItem* quiz_item_;
    QGridLayout* grid_layout_;
@@ -39,7 +39,7 @@ private:
    void init_connects();
 
 signals:
-
+   void quiz_answered();
 
 public slots:
    void on_answer_button_clicked();

@@ -2,7 +2,7 @@
 #include <QDebug>
 
 
-Model::Model(Persistence* p) : profile_(new Profile())
+Model::Model(Persistence* p) : profile_(new Profile()), quiz_set_(nullptr)
 {
     p_ = p;
 
@@ -19,15 +19,15 @@ Model& Model::operator=(const Model& other)
   if (this == &other) //self-assignment guard;
       return *this;
 
-  if (list_of_quizzes.size() != other.list_of_quizzes.size() || active_quiz.size() != other.active_quiz.size())
+  if (list_of_quizzes.size() != other.list_of_quizzes.size() || quiz_set_->size() != other.quiz_set_->size())
   {
       list_of_quizzes.clear();
-      active_quiz.clear();
+      quiz_set_->clear();
   }
   p_ = other.p_;
   profile_ = other.profile_;
   std::copy(other.list_of_quizzes.begin(), other.list_of_quizzes.end(), list_of_quizzes.begin());
-  std::copy(other.active_quiz.begin(), other.active_quiz.end(), active_quiz.begin());
+  std::copy(other.quiz_set_->begin(), other.quiz_set_->end(), quiz_set_->begin());
 
   return *this;
 }
@@ -83,10 +83,12 @@ bool Model::scan_for_profile(QString &current_profile)
     return p_->scan_for_profile(current_profile);
 }
 
-void Model::load_existing_quiz()
+void Model::load_existing_quiz(NameAndPath nap)
 {
-    //qDebug() << "Model::load_existing_quiz";
+    qDebug() << "Model::load_existing_quiz";
+    p_->loadQuiz(nap, quiz_set_);
 
+    qDebug() << "Model::load_existing_quiz" << quiz_set_;
 }
 
 
