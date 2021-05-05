@@ -18,6 +18,7 @@ MainWidget::MainWidget(Model *model, QWidget *parent) : QWidget(parent)
     this->setFixedSize(600,600);
     dialog_ = new profile_creation_dialog();
 
+    setWindowIcon(QIcon("IQuizt-icon-144x144.png"));
 }
 /// \brief Creates a Menu Bar and fills it with actions.
 void MainWidget::create_menubar()
