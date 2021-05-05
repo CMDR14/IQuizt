@@ -119,7 +119,7 @@ Profile *Model::getProfile() const
     return profile_;
 }
 
-QString Model::getDirPath()
+QString Model::getDirPath() const
 {
     return dir_path_;
 }

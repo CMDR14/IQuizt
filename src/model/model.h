@@ -29,7 +29,7 @@ public:
     QVector<NameAndPath> getList_of_quizzes() const;
 
     Profile *getProfile() const;
-    QString getDirPath();
+    QString getDirPath() const;
     void setDirPath(const QString& path);
 
 private:
