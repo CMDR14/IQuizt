@@ -26,6 +26,7 @@ Model& Model::operator=(const Model& other)
   }
   p_ = other.p_;
   profile_ = other.profile_;
+  dir_path_ = other.dir_path_
   std::copy(other.list_of_quizzes.begin(), other.list_of_quizzes.end(), list_of_quizzes.begin());
   std::copy(other.active_quiz.begin(), other.active_quiz.end(), active_quiz.begin());
 
