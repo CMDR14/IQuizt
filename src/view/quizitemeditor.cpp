@@ -25,22 +25,27 @@ void QuizItemEditor::init_layout()
     question_line_ = new QLineEdit(this);
     question_line_->setText(quiz_item_->getQuestion());
     grid_layout_->addWidget(question_line_, 0, 0, 1, 2);
+    new_str_[0] = quiz_item_->getQuestion();
 
     right_line_ = new QLineEdit(this);
     right_line_->setText(quiz_item_->getRightAnswer());
     grid_layout_->addWidget(right_line_, 1, 0);
+    new_str_[1] = quiz_item_->getRightAnswer();
 
     wrong1_line_ = new QLineEdit(this);
     wrong1_line_->setText(quiz_item_->getWrongAnswer1());
     grid_layout_->addWidget(wrong1_line_, 1, 1);
+    new_str_[2] = quiz_item_->getWrongAnswer1();
 
     wrong2_line_ = new QLineEdit(this);
     wrong2_line_->setText(quiz_item_->getWrongAnswer2());
     grid_layout_->addWidget(wrong2_line_, 2, 0);
+    new_str_[3] = quiz_item_->getWrongAnswer2();
 
     wrong3_line_ = new QLineEdit(this);
     wrong3_line_->setText(quiz_item_->getWrongAnswer3());
     grid_layout_->addWidget(wrong3_line_, 2, 1);
+    new_str_[4] = quiz_item_->getWrongAnswer3();
 
 
     trys_layout_ = new QHBoxLayout(this);
@@ -48,10 +53,12 @@ void QuizItemEditor::init_layout()
     trys_spin_ = new QSpinBox(this);
     trys_spin_->setValue(quiz_item_->getTrys());
     trys_layout_->addWidget(trys_spin_);
+    new_int_[0] = quiz_item_->getTrys();
 
     corrects_spin_ = new QSpinBox(this);
     corrects_spin_->setValue(quiz_item_->getCorrects());
     trys_layout_->addWidget(corrects_spin_);
+    new_int_[1] = quiz_item_->getCorrects();
 
     grid_layout_->addLayout(trys_layout_, 3, 0);
 

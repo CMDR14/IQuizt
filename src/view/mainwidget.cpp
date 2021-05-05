@@ -12,7 +12,7 @@ MainWidget::MainWidget(Model *model, QWidget *parent) : QWidget(parent)
     VBoxLayout_ = new QVBoxLayout();
     create_menubar();
     //this->setFixedSize(600,600);
-    setMinimumSize(600,600);
+    setMinimumSize(400,500);
     dialog_ = new profile_creation_dialog();
 
     setWindowIcon(QIcon("IQuizt-icon-144x144.png"));
@@ -98,6 +98,13 @@ void MainWidget::create_menubar()
             list_quizzes_clicked();
         });
 
+        /// \arg Adds action to set quiz directory.
+        auto *set_quiz_dir_clicked = menu_bar->addAction("Set Quiz Directory");
+        connect(set_quiz_dir_clicked, &QAction::triggered, this, [=]()
+        {
+            create_file_dialog();
+        });
+
         menu_bar->setNativeMenuBar(false);
         menu_bar->show();
         this->layout()->setMenuBar(menu_bar);
@@ -130,6 +137,8 @@ void MainWidget::list_quizzes_clicked()
     {
         list_->addItem(QString::number(i+1) + " : " + tmp.at(i).name + "\t" + tmp.at(i).path);
     }
+
+    qDebug() << "MainWidget::list_quizzes_clicked.";
 }
 
 /// \brief If model can load profile, calls for profile displaying
@@ -138,7 +147,7 @@ void MainWidget::my_profile_clicked()
 
     if(model_->load_my_profile(current_profile))
     {
-        QMessageBox::information(this, "IQuizt", "Profile loaded!");
+        //QMessageBox::information(this, "IQuizt", "Profile loaded!");
         display_profile_data();
     }
     else
@@ -208,6 +217,23 @@ void MainWidget::remove_all_widgets(QLayout *layout)
        delete w;
     }
     widgets_.clear();
+}
+
+/// \brief create file dialog where you can select the .quiz files and it gets the folder path
+void MainWidget::create_file_dialog()
+{
+
+     QFileDialog dialog;
+     dialog.setNameFilter("quiz files (*.quiz)");
+     dialog.exec();
+
+
+     QDir d =  dialog.directory();
+     QString absolute = d.absolutePath();
+
+     qDebug() << "Utvonal: " << absolute;
+     model_->setDirPath(absolute);
+
 }
 
 /// \brief Getter of the current profile.

@@ -29,6 +29,8 @@ public:
     QVector<NameAndPath> getList_of_quizzes() const;
 
     Profile *getProfile() const;
+    QString getDirPath() const;
+    void setDirPath(const QString& path);
 
     void set_active_set_name_and_path(NameAndPath nap){quiz_set_name_and_path_=nap;}
     NameAndPath get_active_set_name_and_path() const {return quiz_set_name_and_path_;}
@@ -36,6 +38,7 @@ public:
     QVector<QuizItem*>* get_active_quiz_set_() {return quiz_set_;}
 
 private:
+    QString dir_path_;
     Persistence* p_ = nullptr;
     QVector<NameAndPath> list_of_quizzes;
     Profile* profile_;

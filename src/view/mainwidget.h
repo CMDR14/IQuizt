@@ -7,6 +7,7 @@
 #include <QMenuBar>
 #include <QVBoxLayout>
 #include <QLayout>
+#include <QFileDialog>
 #include "quizitemselector.h"
 #include "../model/quizitem.h"
 #include "profilecreationdialog.h"
@@ -37,6 +38,7 @@ private:
     void create_profile();
     void display_profile_data();
     void remove_all_widgets(QLayout* layout);
+    void create_file_dialog();
 
     /// Reference for the program's busines logic
     Model* model_; 
