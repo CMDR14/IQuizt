@@ -61,7 +61,7 @@ void MainWidget::create_menubar()
 
             }else{
                 remove_all_widgets(VBoxLayout_);
-                QuizSetDisplay* qst = new QuizSetDisplay(model_->get_active_set_name_and_path().name, model_->get_active_quiz_set_(), false);
+                QuizSetDisplay* qst = new QuizSetDisplay(model_->get_active_set_name_and_path().name, model_->get_active_quiz_set_(), false, model_->getProfile());
                 connect(qst, &QuizSetDisplay::save_quiz, this, &MainWidget::save_quiz);
                 VBoxLayout_->addWidget(qst);
                 widgets_.append(qst);
@@ -83,8 +83,11 @@ void MainWidget::create_menubar()
 
             }else{
                 remove_all_widgets(VBoxLayout_);
-                QuizSetDisplay* qst = new QuizSetDisplay(model_->get_active_set_name_and_path().name, model_->get_active_quiz_set_());
+                QuizSetDisplay* qst = new QuizSetDisplay(model_->get_active_set_name_and_path().name, model_->get_active_quiz_set_(), true, model_->getProfile());
                 connect(qst, &QuizSetDisplay::save_quiz, this, &MainWidget::save_quiz);
+                connect(qst, &QuizSetDisplay::save_profile, this, [=](){
+                    model_->save_my_profile(current_profile);
+                });
                 VBoxLayout_->addWidget(qst);
                 widgets_.append(qst);
                 qst->show();

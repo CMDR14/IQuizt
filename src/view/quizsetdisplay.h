@@ -8,6 +8,7 @@
 #include "../model/quizitem.h"
 #include "quizitemselector.h"
 #include "quizitemeditor.h"
+#include "../profile/profile.h"
 
 /** \brief This class is used to display a quiz set
  *
@@ -18,13 +19,15 @@ class QuizSetDisplay : public QWidget
 {
     Q_OBJECT
 public:
-    explicit QuizSetDisplay(const QString& name, QVector<QuizItem*> *items, bool is_selector = true, QWidget *parent = nullptr);
+    explicit QuizSetDisplay(const QString& name, QVector<QuizItem*> *items, bool is_selector = true, Profile* profile = nullptr, QWidget *parent = nullptr);
     ~QuizSetDisplay();
 
 private:
     QString name_;
     QVector<QuizItem*> *items_;
     bool is_selector_;
+
+    Profile* currProfile_;
 
     QScrollArea *scroll_area_;
     QVBoxLayout *layout_;
@@ -41,6 +44,7 @@ private:
 
 signals:
     void save_quiz();
+    void save_profile();
 
 public slots:
     void quiz_answered();

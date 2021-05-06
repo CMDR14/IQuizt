@@ -117,6 +117,17 @@ void Model::list_quizzes()
     qDebug() << "Quiz loading succesful!";
 }
 
+bool Model::save_my_profile(QString prof_name)
+{
+    QVector<QString> saveProfData;
+    saveProfData.append(prof_name);
+    saveProfData.append(QString::number(profile_->getLevel()));
+    saveProfData.append(QString::number(profile_->getCorrect_counter()));
+    saveProfData.append(QString::number(profile_->getWrong_counter()));
+
+    return p_->saveProfile(saveProfData,prof_name);
+}
+
 QVector<NameAndPath> Model::getList_of_quizzes() const
 {
     return list_of_quizzes;
