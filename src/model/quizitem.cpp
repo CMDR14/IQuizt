@@ -137,8 +137,8 @@ QTextStream& operator>>(QTextStream& is, QuizItem& q)
     wrong2 = is.readLine();
     wrong3 = is.readLine();
     line = is.readLine();
-    trys = line.split(" ").at(0).toInt();
-    corrects = line.split(" ").at(1).toInt();
+    trys = line.split("\t").at(0).toInt();
+    corrects = line.split("\t").at(1).toInt();
 
     q.setQuestion(question);
     q.setRightAnswer(right);

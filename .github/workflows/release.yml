@@ -1,0 +1,114 @@
+name: New Release
+
+on: 
+  push:
+    branches:
+      - release
+
+
+jobs:  
+        
+  build:
+    name: Build and upload the project as an artifact
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y build-essential cmake qt5-default
+    - name: Build
+      run: |
+        cmake src
+        make install
+        chmod a+x Release/IQuizt
+    - name: Copy icon and sample quiz
+      run: |
+        cp assets/pics/IQuizt-icon-144x144.png Release/IQuizt-icon-144x144.png
+        cp -r assets/quizzes Release
+    - name: Create artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: IQuizt-Exec
+        path: Release
+    - name: create artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: IQuizt-Exec
+        path: Release
+
+  create-documentation:
+    name: Generate Documentation
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install dependecies
+      run: |
+        sudo apt-get update
+        sudo apt-get install doxygen
+    - name: Generate with Doxygen
+      run: doxygen Doxyfile
+    - name: Upload artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: IQuizt-Docs
+        path: docs/*
+
+  create-release:
+    name: Distribute project to GitHub Releases
+    runs-on: ubuntu-latest
+    needs: create-documentation
+    steps:
+      - name: Download install content
+        uses: actions/download-artifact@v2
+        with:
+          name: IQuizt-Exec
+          path: ./exec
+      - name: Archive install content
+        uses: thedoctor0/zip-release@master
+        with:
+          filename: IQuizt-Exec.zip
+          directory: ./exec
+
+      - name: Download doc content
+        uses: actions/download-artifact@v2
+        with:
+          name: IQuizt-Docs
+          path: ./docs
+      - name: Archive doc content
+        uses: thedoctor0/zip-release@master
+        with:
+          filename: IQuizt-Docs.zip
+          directory: ./docs
+
+      - name: Create GitHub release
+        id: create-new-release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v0.0.${{ github.run_number }}
+          release_name: Release v0.0.${{ github.run_number }}
+
+      - name: Upload exec asset to GitHub release
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create-new-release.outputs.upload_url }}
+          asset_path: ./exec/IQuizt-Exec.zip
+          asset_name: IQuizt-v0.0.${{ github.run_number }}.zip
+          asset_content_type: application/zip
+
+      - name: Upload doc asset to GitHub release
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create-new-release.outputs.upload_url }}
+          asset_path: ./docs/IQuizt-Docs.zip
+          asset_name: IQuizt-v0.0.${{ github.run_number }}-Documentation.zip
+          asset_content_type: documentation/zip
+        

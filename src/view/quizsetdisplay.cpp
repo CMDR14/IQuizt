@@ -16,6 +16,11 @@ QuizSetDisplay::QuizSetDisplay(const QString& name, QVector<QuizItem*> *items, b
     init_layout();
 }
 
+QuizSetDisplay::~QuizSetDisplay()
+{
+    emit save_quiz();
+}
+
 /** \brief Sets up the layout of the widget.
  *
  *  The base is the same for the editor and the filler.

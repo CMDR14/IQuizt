@@ -21,7 +21,7 @@ public:
     bool load_my_profile(QString prof_name);
     bool create_my_profile(QString prof_name);
     bool scan_for_profile(QString &current_profile);
-    void edit_active_quiz();
+    bool save_active_quiz();
     void load_existing_quiz(NameAndPath nap);
     void list_quizzes();
 

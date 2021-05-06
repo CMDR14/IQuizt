@@ -62,6 +62,7 @@ void MainWidget::create_menubar()
             }else{
                 remove_all_widgets(VBoxLayout_);
                 QuizSetDisplay* qst = new QuizSetDisplay(model_->get_active_set_name_and_path().name, model_->get_active_quiz_set_(), false);
+                connect(qst, &QuizSetDisplay::save_quiz, this, &MainWidget::save_quiz);
                 VBoxLayout_->addWidget(qst);
                 widgets_.append(qst);
                 qst->show();
@@ -83,6 +84,7 @@ void MainWidget::create_menubar()
             }else{
                 remove_all_widgets(VBoxLayout_);
                 QuizSetDisplay* qst = new QuizSetDisplay(model_->get_active_set_name_and_path().name, model_->get_active_quiz_set_());
+                connect(qst, &QuizSetDisplay::save_quiz, this, &MainWidget::save_quiz);
                 VBoxLayout_->addWidget(qst);
                 widgets_.append(qst);
                 qst->show();
@@ -234,6 +236,12 @@ void MainWidget::create_file_dialog()
      qDebug() << "Utvonal: " << absolute;
      model_->setDirPath(absolute);
 
+}
+
+void MainWidget::save_quiz()
+{
+    qDebug() << "MainWidget::save_quiz\tfunction called\n";
+    model_->save_active_quiz();
 }
 
 /// \brief Getter of the current profile.

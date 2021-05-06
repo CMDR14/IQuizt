@@ -53,6 +53,8 @@ private:
 
 signals:
 
+public slots:
+    void save_quiz();
 
 };
 

@@ -56,7 +56,7 @@ bool Persistence::get_quiz_sets(QVector<NameAndPath>& quiz_sets, QString path) {
  * \returns true if everything is correct.
  * \see <a href="https://doc.qt.io/qt-5/qtextstream.html">QTextStream</a>
  * */
-bool Persistence::saveQuiz(const NameAndPath &NamePath, const QVector<QuizItem> &SaveQuizData)
+bool Persistence::saveQuiz(const NameAndPath &NamePath, QVector<QuizItem*>* &SaveQuizData)
 {
     QFile file(NamePath.path);
     if(!file.open(QFile::WriteOnly))
@@ -64,11 +64,11 @@ bool Persistence::saveQuiz(const NameAndPath &NamePath, const QVector<QuizItem> 
 
     QTextStream stream(&file);
 
-    stream << NamePath.name << "\n";
+    stream << NamePath.name << "\n\n";
 
-    for(int i = 0; i < SaveQuizData.size(); ++i)
+    for(int i = 0; i < SaveQuizData->size(); ++i)
     {
-        stream << SaveQuizData[i] << "\n";
+        stream << *((*SaveQuizData)[i]) << "\n";
     }
 
     file.close();
@@ -90,6 +90,7 @@ bool Persistence::saveQuiz(const NameAndPath &NamePath, const QVector<QuizItem> 
  * */
 bool Persistence::loadQuiz(NameAndPath &NamePath, QVector<QuizItem*>* &loadQuizData)
 {
+    try{
     QFile file(NamePath.path);
     if(!file.open(QFile::ReadOnly))
             return false;
@@ -112,6 +113,9 @@ bool Persistence::loadQuiz(NameAndPath &NamePath, QVector<QuizItem*>* &loadQuizD
     file.close();
 
     return true;
+    }catch(...){
+        return false;
+    }
 }
 
 
