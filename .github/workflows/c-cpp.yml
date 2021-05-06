@@ -28,7 +28,7 @@ jobs:
         url: 'https://github.com/CMDR14/IQuizt'
     - name: Install binary
       run: |
-        cd build/src
+        cd ../build
         make install
     - name: Create artifact
       uses: actions/upload-artifact@v2
