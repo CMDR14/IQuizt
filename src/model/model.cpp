@@ -2,10 +2,9 @@
 #include <QDebug>
 
 
-Model::Model(Persistence* p) : profile_(new Profile()), quiz_set_(nullptr)
+Model::Model(Persistence* p) : profile_(new Profile()), quiz_set_(nullptr), dir_path_(".")
 {
     p_ = p;
-
 }
 
 
@@ -84,12 +83,18 @@ bool Model::scan_for_profile(QString &current_profile)
     return p_->scan_for_profile(current_profile);
 }
 
+bool Model::save_active_quiz()
+{
+    return p_->saveQuiz(quiz_set_name_and_path_, quiz_set_);
+}
+
 void Model::load_existing_quiz(NameAndPath nap)
 {
     qDebug() << "Model::load_existing_quiz";
-    p_->loadQuiz(nap, quiz_set_);
-
-    qDebug() << "Model::load_existing_quiz" << quiz_set_;
+    if(p_->loadQuiz(nap, quiz_set_))
+            qDebug() << "Model::load_existing_quiz" << quiz_set_;
+    else
+        quiz_set_ = nullptr;
 }
 
 

@@ -19,6 +19,7 @@ class QuizSetDisplay : public QWidget
     Q_OBJECT
 public:
     explicit QuizSetDisplay(const QString& name, QVector<QuizItem*> *items, bool is_selector = true, QWidget *parent = nullptr);
+    ~QuizSetDisplay();
 
 private:
     QString name_;
@@ -37,6 +38,9 @@ private:
     void init_layout();
     void init_selector_layout();
     void init_editor_layout();
+
+signals:
+    void save_quiz();
 
 public slots:
     void quiz_answered();
