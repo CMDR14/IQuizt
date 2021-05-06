@@ -32,11 +32,6 @@ jobs:
       with:
         name: IQuizt-Exec
         path: Release
-    - name: create artifact
-      uses: actions/upload-artifact@v2
-      with:
-        name: IQuizt-Exec
-        path: Release
 
   create-documentation:
     name: Generate Documentation
@@ -109,6 +104,5 @@ jobs:
         with:
           upload_url: ${{ steps.create-new-release.outputs.upload_url }}
           asset_path: ./docs/IQuizt-Docs.zip
-          asset_name: IQuizt-v0.0.${{ github.run_number }}-Documentation.zip
+          asset_name: IQuizt-v0.0.${{ github.run_number }}-Developer-Documentation.zip
           asset_content_type: documentation/zip
-        
