@@ -195,10 +195,10 @@ void MainWidget::create_profile()
 void MainWidget::display_profile_data()
 {
     remove_all_widgets(VBoxLayout_);
-    QLabel* name = new QLabel(model_->getProfile()->name());
-    QLabel* level = new QLabel(QString::number(model_->getProfile()->getLevel()));
-    QLabel* correct = new QLabel(QString::number(model_->getProfile()->getCorrect_counter()));
-    QLabel* wrong = new QLabel(QString::number(model_->getProfile()->getWrong_counter()));
+    QLabel* name = new QLabel("Név: " + model_->getProfile()->name());
+    QLabel* level = new QLabel("Szint: " + QString::number(model_->getProfile()->getLevel()));
+    QLabel* correct = new QLabel("Helyes válaszok: " + QString::number(model_->getProfile()->getCorrect_counter()));
+    QLabel* wrong = new QLabel("Helytelen válaszok: " + QString::number(model_->getProfile()->getWrong_counter()));
 
 
 
