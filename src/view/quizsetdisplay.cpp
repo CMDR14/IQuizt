@@ -10,8 +10,8 @@
  *  \param is_selector is used to chose if its a filler or editor of the set. Default is filler.
  *  \param parent is the tointer to its parent.
  *  */
-QuizSetDisplay::QuizSetDisplay(const QString& name, QVector<QuizItem*> *items, bool is_selector, QWidget *parent)
-    : QWidget(parent), name_(name), items_(items), is_selector_(is_selector)
+QuizSetDisplay::QuizSetDisplay(const QString& name, QVector<QuizItem*> *items, bool is_selector, Profile* profile, QWidget *parent)
+    : QWidget(parent), name_(name), items_(items), is_selector_(is_selector), currProfile_(profile)
 {
     init_layout();
 }
@@ -68,6 +68,13 @@ void QuizSetDisplay::init_selector_layout()
         layout_->addWidget(qs);
         qs->show();
         connect(qs, &quizitemselector::quiz_answered, this, &QuizSetDisplay::quiz_answered);
+        connect(qs, &quizitemselector::quiz_answered, this, [=](){
+            switch(dynamic_cast<quizitemselector*>(sender())->is_answered()){
+            case  1 : currProfile_->setCorrect_counter(currProfile_->getCorrect_counter()+1); emit save_profile(); break;
+            case  2 : currProfile_->setWrong_counter(currProfile_->getWrong_counter()+1); emit save_profile(); break;
+            default : break;
+            }
+        });
         selectors_.append(qs);
     }
 }
@@ -104,6 +111,7 @@ void QuizSetDisplay::quiz_answered()
     }
     result_label_->setText("You filled: " + QString::number(answered) + "/" + QString::number(all)
                            + "\nYou got: " + QString::number(good) + "/" + QString::number(all));
+
 }
 
 /// \brief Adds a new item to the collection and refreshes the ui according.

@@ -27,6 +27,7 @@ int Profile::getCorrect_counter() const
 void Profile::setCorrect_counter(int value)
 {
     correct_counter = value;
+    AdjustLevel();
 }
 
 int Profile::getLevel() const
@@ -47,4 +48,12 @@ int Profile::getWrong_counter() const
 void Profile::setWrong_counter(int value)
 {
     wrong_counter = value;
+}
+
+void Profile::AdjustLevel()
+{
+    if(correct_counter != 0 && correct_counter % 10 == 0)
+    {
+        ++level_;
+    }
 }

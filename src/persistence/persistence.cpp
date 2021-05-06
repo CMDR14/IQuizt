@@ -132,7 +132,7 @@ bool Persistence::loadQuiz(NameAndPath &NamePath, QVector<QuizItem*>* &loadQuizD
 
 bool Persistence::saveProfile(QVector<QString> &SaveProfileData, QString const &profileName)
 {
-    QFile file(profileName + ".profile"); //vagy .quiz
+    QFile file(profileName + ".profile");
     if(!file.open(QFile::WriteOnly))
         return false;
 
