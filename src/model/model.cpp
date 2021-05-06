@@ -2,7 +2,7 @@
 #include <QDebug>
 
 
-Model::Model(Persistence* p) : profile_(new Profile()), quiz_set_(nullptr), dir_path_(".")
+Model::Model(Persistence* p) : dir_path_("."), profile_(new Profile()), quiz_set_(nullptr)
 {
     p_ = p;
 }
