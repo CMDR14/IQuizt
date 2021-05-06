@@ -24,6 +24,7 @@ public:
     bool save_active_quiz();
     void load_existing_quiz(NameAndPath nap);
     void list_quizzes();
+    bool save_my_profile(QString prof_name);
 
 
     QVector<NameAndPath> getList_of_quizzes() const;

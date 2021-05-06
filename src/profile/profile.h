@@ -24,6 +24,8 @@ public:
     int getWrong_counter() const;
     void setWrong_counter(int value);
 
+    void AdjustLevel();
+
 private:
     QString name_;
     int level_;
