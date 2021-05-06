@@ -43,3 +43,5 @@ target_link_libraries(IQuizt
     Qt5::Widgets
     IQuizt_View
 )
+
+install(TARGETS IQuizt DESTINATION ${CMAKE_CURRENT_SOURCE_DIR}/../Release/ )
