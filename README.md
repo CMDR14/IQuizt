@@ -13,7 +13,7 @@ Szauer Bertalan
   - Unzip.
   - Get these packages, if you don't have them:
     - build-essential
-    - qt5-default
+    - qt5-default (5.12)
   - Add execution property to the IQuizt binary.
   - Run it (can test with included quizzes).
   - If problem occurred try running it from the terminal.
