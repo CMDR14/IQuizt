@@ -19,8 +19,8 @@ profile_creation_dialog::profile_creation_dialog() :
 
         label_.setText("Enter profile name: ");
 
-        gridLayout_->addWidget(&label_,0,1);
-        gridLayout_->addWidget(lineEdit_,1,1);
+        gridLayout_->addWidget(&label_,0,0,1,3);
+        gridLayout_->addWidget(lineEdit_,1,0,1,3);
         gridLayout_->addWidget(okButton_,2,0);
         gridLayout_->addWidget(cancelButton_,2,2);
 
